@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  header = [{ name: 'דף הבית', component: 'HomeComponent' },
-  { name: 'הזמנה', component: 'ReservationComponent' }]; 
+  header = [{ name: 'הזמנה חדשה', route: '/reservation' },
+    { name: 'הכלבים שלי', route: '/reservation' },
+    { name: 'צור קשר', route: '/reservation' }];
+
+    home = "/home";
 }

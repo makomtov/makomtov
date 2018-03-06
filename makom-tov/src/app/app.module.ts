@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,9 +26,10 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     HomeComponent,
     ReservationComponent
-  ],
+    ],
   imports: [
     BrowserModule,
+    SharedModule,
     RouterModule.forRoot(
       appRoutes
     )
