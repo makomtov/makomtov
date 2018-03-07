@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   header = [{ name: 'הזמנה חדשה', route: '/reservation' },
     { name: 'הכלבים שלי', route: '/reservation' },
-    { name: 'צור קשר', route: '/reservation' }];
+    { name: 'צור קשר', route: '/contact' }];
 
     home = "/home";
 }

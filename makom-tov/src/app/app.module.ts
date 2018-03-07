@@ -8,6 +8,12 @@ import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { ContactComponent } from './contact/contact.component';
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +22,7 @@ const appRoutes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
+  { path: 'contact', component: ContactComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -25,14 +32,20 @@ const appRoutes: Routes = [
     HeaderComponent,
     PageNotFoundComponent,
     HomeComponent,
-    ReservationComponent
+    ReservationComponent,
+    ContactComponent,
     ],
   imports: [
     BrowserModule,
     SharedModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    CommonModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCtQQ38QZzRx5e63c-WbBHvbDIK5zJfDd8'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
