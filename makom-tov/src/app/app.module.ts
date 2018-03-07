@@ -34,7 +34,6 @@ const appRoutes: Routes = [
     HomeComponent,
     ReservationComponent,
     ContactComponent,
-    MapComponent
     ],
   imports: [
     BrowserModule,
