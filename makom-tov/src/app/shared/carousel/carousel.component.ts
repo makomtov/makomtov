@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   @Input() imageUrlArray;
-  height = "350px";
+  height = "390px";
   autoPlay = true;
 
   constructor() { }
