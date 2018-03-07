@@ -9,7 +9,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ContactComponent } from './contact/contact.component';
-import { MapComponent } from './map/map.component';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
