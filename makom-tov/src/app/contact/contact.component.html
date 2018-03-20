@@ -6,7 +6,7 @@
                   <img src="/assets/Address.png" style="width:20%;height:20%;">
                   <span style="margin-right:5%;margin-top:5%">
                     <h3 style="line-height:20%;">כתובת:</h3>
-                    <p style="margin-top:15%;line-height:35%">כפר הראה משהו משהו</p>
+                    <p style="margin-top:15%;line-height:35%">כפר הנוער בן יקיר, כפר הרא"ה</p>
                   </span>
         </div>
         <br />
@@ -24,7 +24,7 @@
           <img src="/assets/Phone.png" style="width:20%;height:20%;">
           <span style="margin-right:5%;margin-top:5%">
                     <h3 style="line-height:20%;">טלפון:</h3>
-                    <p style="margin-top:15%;line-height:35%">052-5555555</p>
+                    <p style="margin-top:30%;line-height:35%">050-2999844</p>
           </span>
         </div>
         <br />
@@ -32,8 +32,15 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      <agm-map
+        [latitude]="lat" 
+        [longitude]="lng"
+        [zoomControl]="true"
+        [zoom] = "14" >
+
+        <agm-marker
+          [latitude]="lat" 
+          [longitude]="lng"></agm-marker>
       </agm-map>
     </div>
   </div>
