@@ -15,6 +15,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from '@agm/core';
 
+import { FacebookModule } from 'ngx-facebook';
+
+import { ModalDialogModule } from 'ngx-modal-dialog';
+import { CustomModalComponent } from './custom-modal/custom-modal.component';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'reservation', component: ReservationComponent },
@@ -34,6 +39,7 @@ const appRoutes: Routes = [
     HomeComponent,
     ReservationComponent,
     ContactComponent,
+    CustomModalComponent
     ],
   imports: [
     BrowserModule,
@@ -45,9 +51,12 @@ const appRoutes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCtQQ38QZzRx5e63c-WbBHvbDIK5zJfDd8'
-    })
+    }),
+    FacebookModule.forRoot(),
+    ModalDialogModule.forRoot()
   ],
   providers: [],
+  entryComponents: [CustomModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +12,9 @@ export class AppComponent {
     { name: 'הכלבים שלי', route: '/reservation' },
     { name: 'צור קשר', route: '/contact' }];
 
-    home = "/home";
+    home = '/home';
+
+    LoginUser;
+
+  constructor(private http: HttpClient) { }
 }

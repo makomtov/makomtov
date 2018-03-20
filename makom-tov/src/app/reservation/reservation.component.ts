@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
+import { CustomModalComponent } from '../custom-modal/custom-modal.component';
 
 @Component({
   selector: 'app-reservation',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationComponent implements OnInit {
 
-  constructor() { }
+  public user;
+
+  constructor(private appCom: AppComponent,
+              private modalDialogService: ModalDialogService,
+              private viewContainer: ViewContainerRef) {
+
+      this.user = appCom.LoginUser;
+    }
 
   ngOnInit() {
+    if (typeof this.user === 'undefined') {
+      this.openSimpleModal();
+    }
   }
 
+  openSimpleModal() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Custom child component',
+      childComponent: CustomModalComponent,
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      }
+    });
+  }
 }
