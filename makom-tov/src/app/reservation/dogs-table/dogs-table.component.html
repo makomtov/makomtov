@@ -1,0 +1,21 @@
+  <table class="table" style="direction: rtl; text-align: right">
+    <thead>
+      <tr>
+        <th scope="col">שם הכלב</th>
+        <th scope="col">תאריך חיסון כלבת</th>
+        <th scope="col">אוכל של הכלביה?</th>
+        <th scope="col">פנסיון?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dog of selectedDogs">
+        <th scope="row">{{dog.itemName}}</th>
+        <td>{{dog.vaccinationDate}}</td>
+        <td><input type="checkbox" (change)="changeCheckbox.next({action:1,id:dog.id, value:$event.target.checked})"></td>
+        <td><input type="checkbox" (change)="changeCheckbox.next({action:2,id:dog.id, value:$event.target.checked})"></td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<app-edit-details></app-edit-details>
+
