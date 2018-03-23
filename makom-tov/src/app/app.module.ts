@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
+import { FbServiceService } from './services/fb-service.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     ReservationComponent,
     ContactComponent,
     CustomModalComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     SharedModule,
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     FacebookModule.forRoot(),
     ModalDialogModule.forRoot()
   ],
-  providers: [],
+  providers: [FbServiceService],
   entryComponents: [CustomModalComponent],
   bootstrap: [AppComponent]
 })
