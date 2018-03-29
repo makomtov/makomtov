@@ -17,13 +17,13 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
 import { FacebookModule } from 'ngx-facebook';
-
+import {LoginRouteGuardService} from './services/login-route-guard.service';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'reservation', component: ReservationComponent },
+  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     FacebookModule.forRoot(),
     ModalDialogModule.forRoot()
   ],
-  providers: [FbServiceService],
+  providers: [FbServiceService, LoginRouteGuardService],
   entryComponents: [CustomModalComponent],
   bootstrap: [AppComponent]
 })

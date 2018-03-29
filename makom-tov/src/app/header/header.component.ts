@@ -20,24 +20,26 @@ export class HeaderComponent {
     private viewContainer: ViewContainerRef,
     private fbService: FbServiceService) { }
 
-  openSimpleModal() {
-    this.modalDialogService.openDialog(this.viewContainer, {
-      title: 'Custom child component',
-      childComponent: CustomModalComponent,
-      settings: {
-        closeButtonClass: 'close theme-icon-close'
-      },
-      actionButtons:
-      [
-        {
-          text: 'התחבר באמצעות פייסבוק', onAction: () =>
-            new Promise((resolve: any) => {this.fbService.loginWithOptions();
-            setTimeout(() => {
-              resolve();
-            }, 20);
-          })},
-        { text: 'הרשם', onAction: () => true }
-      ]
-    });
-  }
+    Login() {
+      this.modalDialogService.openDialog(this.viewContainer, {
+        title: 'Custom child component',
+        childComponent: CustomModalComponent,
+        settings: {
+          closeButtonClass: 'close theme-icon-close'
+        },
+        actionButtons:
+          [
+            {
+              text: 'התחבר באמצעות פייסבוק', onAction: () =>
+                new Promise((resolve: any) => {
+                  this.fbService.loginWithOptions();
+                  setTimeout(() => {
+                    resolve();
+                  }, 20);
+                })
+            },
+            { text: 'הרשם', onAction: () => true }
+          ]
+      });
+    }
 }
