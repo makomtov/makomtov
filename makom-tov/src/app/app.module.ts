@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalDialogModule } from 'ngx-modal-dialog';
+import { FbServiceService } from './services/fb-service.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,11 +20,14 @@ import { AgmCoreModule } from '@agm/core';
 import { SharedService } from './shared/shared.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { DogsTableComponent } from './reservation/dogs-table/dogs-table.component';
-//import { SharedService } from './shared/shared.service'
+
+import { FacebookModule } from 'ngx-facebook';
+import {LoginRouteGuardService} from './services/login-route-guard.service';
+import { CustomModalComponent } from './custom-modal/custom-modal.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'reservation', component: ReservationComponent },
+  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -41,8 +45,9 @@ const appRoutes: Routes = [
     ReservationComponent,
     ContactComponent,
     LoginComponent,
-    DogsTableComponent
-    ],
+    DogsTableComponent,
+    CustomModalComponent
+  ],
   imports: [
     BrowserModule,
     SharedModule,
@@ -56,9 +61,12 @@ const appRoutes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCtQQ38QZzRx5e63c-WbBHvbDIK5zJfDd8'
-    })
+    }),
+    FacebookModule.forRoot(),
+    ModalDialogModule.forRoot()
   ],
-  providers: [SharedService],
+  providers: [FbServiceService, LoginRouteGuardService, SharedService],
+  entryComponents: [CustomModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

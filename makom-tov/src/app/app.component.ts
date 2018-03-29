@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
-
+import { Component, ViewContainerRef } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  header = [{ name: 'הזמנה חדשה', route: '/reservation' },
-    { name: 'הכלבים שלי', route: '/reservation' },
-    { name: 'צור קשר', route: '/contact' }];
+  header = [{ name: 'הזמנה חדשה', route: '/reservation', isNeedLogin: true },
+    { name: 'הכלבים שלי', route: '/reservation', isNeedLogin: true},
+    { name: 'צור קשר', route: '/contact', isNeedLogin: false}];
 
-    home = "/home";
+    home = '/home';
+
+    LoginUser;
+
+  constructor() { }
 }

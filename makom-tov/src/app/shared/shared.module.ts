@@ -13,9 +13,10 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
     CarouselComponent,
     EditDetailsComponent
   ],
-  exports:[
+  exports: [
     CarouselComponent,
-    EditDetailsComponent
+    EditDetailsComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule { }
