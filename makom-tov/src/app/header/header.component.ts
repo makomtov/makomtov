@@ -2,6 +2,9 @@ import { Component, Input, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
 import { CustomModalComponent } from '../custom-modal/custom-modal.component';
 import { FbServiceService } from '../services/fb-service.service';
+import { RegisterComponent } from '../register/register.component';
+import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -15,31 +18,10 @@ export class HeaderComponent {
 
   public user;
 
-  constructor(
-    private modalDialogService: ModalDialogService,
-    private viewContainer: ViewContainerRef,
-    private fbService: FbServiceService) { }
+  constructor(private modalService: NgbModal) { }
 
     Login() {
-      this.modalDialogService.openDialog(this.viewContainer, {
-        title: 'Custom child component',
-        childComponent: CustomModalComponent,
-        settings: {
-          closeButtonClass: 'close theme-icon-close'
-        },
-        actionButtons:
-          [
-            {
-              text: 'התחבר באמצעות פייסבוק', onAction: () =>
-                new Promise((resolve: any) => {
-                  this.fbService.loginWithOptions();
-                  setTimeout(() => {
-                    resolve();
-                  }, 20);
-                })
-            },
-            { text: 'הרשם', onAction: () => true }
-          ]
-      });
+      const modalRef = this.modalService.open(RegisterComponent);
+      modalRef.componentInstance.name = 'World';
     }
 }

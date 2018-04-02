@@ -5,6 +5,8 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { FbServiceService } from './services/fb-service.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,6 +26,8 @@ import { DogsTableComponent } from './reservation/dogs-table/dogs-table.componen
 import { FacebookModule } from 'ngx-facebook';
 import {LoginRouteGuardService} from './services/login-route-guard.service';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
+import { RegisterComponent } from './register/register.component';
+import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,6 +36,7 @@ const appRoutes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
+  { path: 'profile', component: PersonalDetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -46,7 +51,9 @@ const appRoutes: Routes = [
     ContactComponent,
     LoginComponent,
     DogsTableComponent,
-    CustomModalComponent
+    CustomModalComponent,
+    RegisterComponent,
+    PersonalDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +70,12 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyCtQQ38QZzRx5e63c-WbBHvbDIK5zJfDd8'
     }),
     FacebookModule.forRoot(),
-    ModalDialogModule.forRoot()
+    ModalDialogModule.forRoot(),
+    NgbModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [FbServiceService, LoginRouteGuardService, SharedService],
-  entryComponents: [CustomModalComponent],
+  entryComponents: [CustomModalComponent, RegisterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

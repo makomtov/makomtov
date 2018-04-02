@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <div class="form-body">
+        <div class="modal-header">
+          <ul class="nav nav-tabs final-login modal-title" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#Login">התחבר</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#Registration">הרשם</a>
+            </li>
+          </ul>
+        </div>
+
+        <img class="image-circle" src="https://lh3.googleusercontent.com/-ruiRxPDtB2g/WgF2qa5gu2I/AAAAAAAABhI/EFAOBlqKl4IC3QY9oyHd8fMQa7WxQvmKgCL0BGAYYCw/h202/2017-11-07.png">
+
+        <div class="tab-content">
+          <div id="Login" class="tab-pane active">
+            <div class="social-login">
+              <div class="facebookButton">
+                <button type="button" (click)="FacebookLogin()">
+                  התחבר באמצעות Facebook
+                  <i class="fa fa-facebook"></i>
+                </button>
+              </div>
+            </div>
+            <div class="innter-form">
+              <form class="sa-innate-form" method="post" (ngSubmit)="onSubmit()">
+                <label>כתובת אימייל</label>
+                <input type="text" name="username">
+                <label>סיסמא</label>
+                <input type="password" name="password">
+                <button type="submit">התחבר</button>
+                <div>
+                  <a href="">שכחת סיסמה?</a>
+                </div>
+              </form>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div id="Registration" class="tab-pane fade">
+            <div class="social-login">
+              <div class="facebookButton">
+                <button type="button" (click)="FacebookRegister()">
+                  הרשם באמצעות Facebook
+                  <i class="fa fa-facebook"></i>
+                </button>
+              </div>
+            </div>
+            <div class="innter-form">
+              <form [formGroup]="heroForm" (ngSubmit)="onSubmit()" class="sa-innate-form">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>שם פרטי</label>
+                    <input formControlName="firstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>שם משפחה</label>
+                    <input formControlName="lastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>עיר</label>
+                    <input formControlName="city" type="text" placeholder="הקלד כאן עיר..." class="form-control">
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label>כתובת</label>
+                    <input formControlName="address" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>תאריך לידה</label>
+                    <div class="input-group date-picker">
+                      <input formControlName="birthday" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                        ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label>מספר פלאפון</label>
+                    <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
+                  </div>
+                </div>
+                <!-- <pre>Model: {{ model | json }}</pre> -->
+                <div class="form-group">
+                  <label>כתובת אימייל</label>
+                  <input formControlName="mail" type="email" placeholder="הקלד כאן כתובת אימייל..." class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>סיסמה</label>
+                  <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה..." class="form-control">
+                </div>
+                <label class="control-label">מין</label>
+                <div class="form-group">
+                  <label class="btn btn-outline-primary">
+                    <input type="radio" formControlName="gender" value="male"> זכר </label>
+                  <label class="btn btn-outline-primary">
+                    <input type="radio" formControlName="gender" value="female"> נקבה</label>
+                </div>
+                <button [disabled]="heroForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
+                <p>By clicking, you agree to hifriends's User Agreement, Privacy Policy, and Cookie Policy.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
