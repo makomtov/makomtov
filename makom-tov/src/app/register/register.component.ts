@@ -12,7 +12,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   loginForm: FormGroup;
   model;
-loginvalue;
+  loginvalue;
   constructor(public activeModal: NgbActiveModal,
     private fbService: FbServiceService,
     private fb: FormBuilder) {
