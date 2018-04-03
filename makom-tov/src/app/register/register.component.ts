@@ -33,6 +33,7 @@ export class RegisterComponent {
       address: ['', Validators.required],
       birthday: ['', Validators.required],
       phoneNumber: ['', [Validators.required, this.regexCheck(/^05\d{8}$/i)]],
+      phoneNumber2: ['', this.regexCheck(/^$|^05\d{8}$/i)],
       email: ['', [Validators.required, this.regexCheck(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i)]],
       pass: ['', [Validators.required, this.regexCheck(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i)]],
       gender: ['', Validators.required],

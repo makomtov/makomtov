@@ -90,8 +90,11 @@
 	margin:8px 0;
 	
 }
+.radio-btn {
+	padding-top:4%;
+}
 .sa-innate-form button[type=submit]{
-    	border:1px solid#e64b3b;
+	border:1px solid#e64b3b;
 	background:#e64b3b;
 	color:#fff;
 	padding:10px 25px;
@@ -112,3 +115,7 @@
 	.date-picker {
 		direction: ltr;
 	}
+	.align-text-top {
+		font-size:10px;
+	}
+

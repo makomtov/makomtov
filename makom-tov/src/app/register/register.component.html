@@ -29,8 +29,7 @@
               <form [formGroup]="loginForm" class="sa-innate-form" (ngSubmit)="onSubmitLogin()">
                 <label>כתובת דואר אלקטרוני</label>
                 <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני...">
-                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-                  class="alert alert-danger">
+                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="alert alert-danger">
                   <div *ngIf="loginForm.get('email').errors.regexCheck && !(loginForm.get('email').errors.required)">
                     כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
                   </div>
@@ -113,6 +112,19 @@
                     </div>
                   </div>
                   <div class="col-lg-6 form-group">
+                    <label class="control-label">מין</label>
+                    <div class="input-group radio-btn">
+                      <label class="btn btn-outline-secondary">
+                        <input type="radio" formControlName="gender" value="male"> זכר
+                      </label>
+                      <label class="btn btn-outline-secondary">
+                        <input type="radio" formControlName="gender" value="female"> נקבה
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
                     <label>מספר פלאפון</label>
                     <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
                     <div *ngIf="registerForm.get('phoneNumber').invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)"
@@ -121,6 +133,17 @@
                         אנא הזן מספר פלאפון
                       </div>
                       <div *ngIf="registerForm.get('phoneNumber').errors.regexCheck && !(registerForm.get('phoneNumber').errors.required)">
+                        מספר הפלאפון שהוזן לא חוקי
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="align-baseline">מספר פלאפון נוסף</label>
+                    <span class="align-text-top">(אופציונלי)</span>
+                    <input formControlName="phoneNumber2" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
+                    <div *ngIf="registerForm.get('phoneNumber2').invalid && (registerForm.get('phoneNumber2').dirty || registerForm.get('phoneNumber2').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('phoneNumber2').errors.regexCheck && !(registerForm.get('phoneNumber2').errors.required)">
                         מספר הפלאפון שהוזן לא חוקי
                       </div>
                     </div>
@@ -151,13 +174,6 @@
                       סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
                     </div>
                   </div>
-                </div>
-                <label class="control-label">מין</label>
-                <div class="form-group">
-                  <label class="btn btn-outline-primary">
-                    <input type="radio" formControlName="gender" value="male"> זכר </label>
-                  <label class="btn btn-outline-primary">
-                    <input type="radio" formControlName="gender" value="female"> נקבה</label>
                 </div>
                 <button [disabled]="registerForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
                 <p>By clicking, you agree to hifriends's User Agreement, Privacy Policy, and Cookie Policy.</p>
