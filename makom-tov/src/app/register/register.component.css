@@ -81,7 +81,7 @@
 	background:#243d74;
 	color:#fff;
 }
-.sa-innate-form input[type=text], input[type=password], input[type=file], textarea, select, email{
+.sa-innate-form input[type=text], input[type=password], input[type=email], textarea, select, email{
     font-size:13px;
 	padding:10px;
 	border:1px solid#ccc;

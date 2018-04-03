@@ -17,7 +17,6 @@ export class LoginRouteGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
       const modalRef = this.modalService.open(RegisterComponent);
-      modalRef.componentInstance.name = 'World';
-      return true; // this.loginService.getLoginStatus();
+      return false;
     }
   }

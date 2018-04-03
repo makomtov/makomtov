@@ -26,14 +26,25 @@
               </div>
             </div>
             <div class="innter-form">
-              <form class="sa-innate-form" method="post" (ngSubmit)="onSubmit()">
-                <label>כתובת אימייל</label>
-                <input type="text" name="username">
+              <form [formGroup]="loginForm" class="sa-innate-form" (ngSubmit)="onSubmitLogin()">
+                <label>כתובת דואר אלקטרוני</label>
+                <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני...">
+                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="loginForm.get('email').errors.regexCheck && !(loginForm.get('email').errors.required)">
+                    כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
+                  </div>
+                </div>
                 <label>סיסמא</label>
-                <input type="password" name="password">
-                <button type="submit">התחבר</button>
+                <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה...">
+                <div *ngIf="loginForm.get('pass').invalid && (loginForm.get('pass').dirty || loginForm.get('pass').touched)" class="alert alert-danger">
+                  <div *ngIf="loginForm.get('pass').errors.regexCheck && !(loginForm.get('pass').errors.required)">
+                    סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
+                  </div>
+                </div>
+                <button [disabled]="loginForm.status === 'INVALID'" type="submit" class="btn">התחבר</button>
                 <div>
-                  <a href="">שכחת סיסמה?</a>
+                  <a href="">שכחתי סיסמה</a>
                 </div>
               </form>
             </div>
@@ -49,25 +60,48 @@
               </div>
             </div>
             <div class="innter-form">
-              <form [formGroup]="heroForm" (ngSubmit)="onSubmit()" class="sa-innate-form">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" class="sa-innate-form">
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>שם פרטי</label>
                     <input formControlName="firstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
+                    <div *ngIf="registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('firstName').errors.required">
+                        אנא הזן שם פרטי
+                      </div>
+                    </div>
                   </div>
                   <div class="col-sm-6 form-group">
                     <label>שם משפחה</label>
                     <input formControlName="lastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
+                    <div *ngIf="registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('lastName').errors.required">
+                        אנא הזן שם משפחה
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label>עיר</label>
                     <input formControlName="city" type="text" placeholder="הקלד כאן עיר..." class="form-control">
+                    <div *ngIf="registerForm.get('city').invalid && (registerForm.get('city').dirty || registerForm.get('city').touched)" class="alert alert-danger">
+                      <div *ngIf="registerForm.get('city').errors.required">
+                        אנא הזן עיר
+                      </div>
+                    </div>
                   </div>
                   <div class="col-lg-6 form-group">
                     <label>כתובת</label>
                     <input formControlName="address" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
+                    <div *ngIf="registerForm.get('address').invalid && (registerForm.get('address').dirty || registerForm.get('address').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('address').errors.required">
+                        אנא הזן כתובת
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -81,16 +115,42 @@
                   <div class="col-lg-6 form-group">
                     <label>מספר פלאפון</label>
                     <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
+                    <div *ngIf="registerForm.get('phoneNumber').invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('phoneNumber').errors.required">
+                        אנא הזן מספר פלאפון
+                      </div>
+                      <div *ngIf="registerForm.get('phoneNumber').errors.regexCheck && !(registerForm.get('phoneNumber').errors.required)">
+                        מספר הפלאפון שהוזן לא חוקי
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <!-- <pre>Model: {{ model | json }}</pre> -->
                 <div class="form-group">
-                  <label>כתובת אימייל</label>
-                  <input formControlName="mail" type="email" placeholder="הקלד כאן כתובת אימייל..." class="form-control">
+                  <label>כתובת דואר אלקטרוני</label>
+                  <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני..." class="form-control">
+                  <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.get('email').errors.required">
+                      אנא הזן כתובת דואר אלקטרוני
+                    </div>
+                    <div *ngIf="registerForm.get('email').errors.regexCheck && !(registerForm.get('email').errors.required)">
+                      כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>סיסמה</label>
                   <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה..." class="form-control">
+                  <div *ngIf="registerForm.get('pass').invalid && (registerForm.get('pass').dirty || registerForm.get('pass').touched)" class="alert alert-danger">
+                    <div *ngIf="registerForm.get('pass').errors.required">
+                      אנא הזן סיסמה
+                    </div>
+                    <div *ngIf="registerForm.get('pass').errors.regexCheck && !(registerForm.get('pass').errors.required)">
+                      סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
+                    </div>
+                  </div>
                 </div>
                 <label class="control-label">מין</label>
                 <div class="form-group">
@@ -99,7 +159,7 @@
                   <label class="btn btn-outline-primary">
                     <input type="radio" formControlName="gender" value="female"> נקבה</label>
                 </div>
-                <button [disabled]="heroForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
+                <button [disabled]="registerForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
                 <p>By clicking, you agree to hifriends's User Agreement, Privacy Policy, and Cookie Policy.</p>
               </form>
             </div>
