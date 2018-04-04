@@ -5,8 +5,9 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { FbServiceService } from './services/fb-service.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,19 +25,23 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 import { DogsTableComponent } from './reservation/dogs-table/dogs-table.component';
 
 import { FacebookModule } from 'ngx-facebook';
-import {LoginRouteGuardService} from './services/login-route-guard.service';
+import { LoginRouteGuardService } from './services/login-route-guard.service';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { RegisterComponent } from './register/register.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
+import { HistoryReservationComponent } from './history-reservation/history-reservation.component';
+import { ReservationDetailsComponent } from './history-reservation/reservation-details/reservation-details.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
-  { path: '',
+  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService] },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: 'profile', component: PersonalDetailsComponent },
+  { path: 'profile', component: PersonalDetailsComponent, canActivate: [LoginRouteGuardService] },
+  { path: 'history', component: HistoryReservationComponent },
   { path: 'contact', component: ContactComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -53,7 +58,9 @@ const appRoutes: Routes = [
     DogsTableComponent,
     CustomModalComponent,
     RegisterComponent,
-    PersonalDetailsComponent
+    PersonalDetailsComponent,
+    HistoryReservationComponent,
+    ReservationDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +79,11 @@ const appRoutes: Routes = [
     FacebookModule.forRoot(),
     ModalDialogModule.forRoot(),
     NgbModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShowHidePasswordModule.forRoot()
   ],
-  providers: [FbServiceService, LoginRouteGuardService, SharedService],
-  entryComponents: [CustomModalComponent, RegisterComponent],
+  providers: [FbServiceService, LoginRouteGuardService, SharedService, RegisterComponent],
+  entryComponents: [CustomModalComponent, RegisterComponent, ReservationDetailsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

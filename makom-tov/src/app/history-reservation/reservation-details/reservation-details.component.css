@@ -1,0 +1,8 @@
+.row {
+    direction: rtl;
+    text-align: right;
+    padding-top: 5%;
+}
+.dogsTable {
+    padding: 5%;
+}
