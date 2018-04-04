@@ -125,31 +125,55 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-6 form-group">
-                    <label>מספר פלאפון</label>
-                    <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
+                    <label>מספר טלפון</label>
+                    <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
                     <div *ngIf="registerForm.get('phoneNumber').invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)"
                       class="alert alert-danger">
                       <div *ngIf="registerForm.get('phoneNumber').errors.required">
-                        אנא הזן מספר פלאפון
+                        אנא הזן מספר טלפון
                       </div>
                       <div *ngIf="registerForm.get('phoneNumber').errors.regexCheck && !(registerForm.get('phoneNumber').errors.required)">
-                        מספר הפלאפון שהוזן לא חוקי
+                        מספר הטלפון שהוזן לא חוקי
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label class="align-baseline">מספר פלאפון נוסף</label>
+                    <label class="align-baseline">מספר טלפון נוסף</label>
                     <span class="align-text-top">(אופציונלי)</span>
-                    <input formControlName="phoneNumber2" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
+                    <input formControlName="phoneNumber2" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
                     <div *ngIf="registerForm.get('phoneNumber2').invalid && (registerForm.get('phoneNumber2').dirty || registerForm.get('phoneNumber2').touched)"
                       class="alert alert-danger">
                       <div *ngIf="registerForm.get('phoneNumber2').errors.regexCheck && !(registerForm.get('phoneNumber2').errors.required)">
-                        מספר הפלאפון שהוזן לא חוקי
+                        מספר הטלפון שהוזן לא חוקי
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- <pre>Model: {{ model | json }}</pre> -->
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>שם וטרינר מטפל</label>
+                    <input formControlName="veterinarian" type="text" placeholder="הקלד כאן שם וטרינר מטפל..." class="form-control">
+                    <div *ngIf="registerForm.get('veterinarian').invalid && (registerForm.get('veterinarian').dirty || registerForm.get('veterinarian').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('veterinarian').errors.required">
+                        אנא הזן שם וטרינר מטפל
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="align-baseline">טלפון וטרינר מטפל</label>
+                    <input formControlName="veterinarianPhone" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('veterinarianPhone').invalid && (registerForm.get('veterinarianPhone').dirty || registerForm.get('veterinarianPhone').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('veterinarianPhone').errors.required">
+                        אנא הזן מספר טלפון
+                      </div>
+                      <div *ngIf="registerForm.get('veterinarianPhone').errors.regexCheck && !(registerForm.get('veterinarianPhone').errors.required)">
+                        מספר הטלפון שהוזן לא חוקי
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label>כתובת דואר אלקטרוני</label>
                   <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני..." class="form-control">
