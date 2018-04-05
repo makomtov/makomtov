@@ -1,0 +1,23 @@
+.circle {
+  border-radius: 50%;
+}
+
+input {
+  text-align: right;
+}
+
+.close {
+  margin: -1rem -1rem -1rem -1rem;
+}
+
+select {
+  direction: rtl;
+}
+
+form {
+  float: right;
+}
+
+b {
+  margin-left: 10px;
+}

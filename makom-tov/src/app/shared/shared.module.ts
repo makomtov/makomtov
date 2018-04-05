@@ -3,20 +3,26 @@ import { CommonModule } from '@angular/common';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { CarouselComponent } from './carousel/carousel.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    SlideshowModule
+    SlideshowModule,
+    NgbModule,
+    FormsModule
   ],
   declarations: [
     CarouselComponent,
-    EditDetailsComponent
+    EditDetailsComponent,
+    ConfirmModalComponent
   ],
   exports: [
     CarouselComponent,
     EditDetailsComponent,
-    CarouselComponent
+    ConfirmModalComponent
   ]
 })
 export class SharedModule { }

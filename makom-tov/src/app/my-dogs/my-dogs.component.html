@@ -1,0 +1,38 @@
+<div class="row" style="direction: rtl; width: 100%; margin-top:2%;">
+  <div class="col-sm-4" *ngFor="let dog of myDogs" style="margin-bottom: 3%">
+    <div class="card text-right bg-light" style="width: 18rem;">
+      <img class="card-img-top" [src]="getSrc(dog.image)" alt="Card image cap" style="height:160px">
+      <div class="card-body">
+        <h3 class="card-title">{{ dog.name }}</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">מין:</th>
+              <td>{{ dog.gender }}</td>
+            </tr>
+            <tr>
+              <th scope="row">גיל:</th>
+              <td>{{ calcAge(dog.birthDate) }}</td>
+            </tr>
+            <tr>
+              <th scope="row">סוג:</th>
+              <td>{{ dog.type }}</td>
+            </tr>
+            <tr>
+              <th scope="row">תאריך חיסון כלבת:</th>
+              <td>{{ dog.vaccinationDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <app-confirm-modal [text]=getText(dog.name) [idToDelete]="dog.id" (Yes)="deleteDog($event)"></app-confirm-modal>
+        <!-- <button type="button" class="btn btn-danger" aria-label="Left Align" placement="top" ngbTooltip="מחיקה" (click)="m.open(content)">
+          <span class="fa fa-trash-o fa-lg" aria-hidden="true"></span>
+        </button> -->
+        <!-- <button type="button" class="btn btn-info" aria-label="Right Align" placement="top" ngbTooltip="עריכה">
+         <span class="fa fa-pencil fa-lg" aria-hidden="true"></span>
+       </button> -->
+       <app-edit-details [dogDetails]="dog"></app-edit-details>
+       </div>
+    </div>
+  </div>
+</div>

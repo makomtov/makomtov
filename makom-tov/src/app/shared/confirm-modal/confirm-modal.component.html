@@ -1,0 +1,13 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <p>{{text}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="d()">לא</button>
+    <button type="button" class="btn btn-outline-dark" (click)="Yes.next(idToDelete); d()">כן</button>
+  </div>
+</ng-template>
+
+<button type="button" class="btn btn-danger" (click)="sharedService.open(content)" aria-label="Left Align" placement="top" ngbTooltip="מחיקה">
+  <span class="fa fa-trash-o fa-lg" aria-hidden="true"></span>
+</button>

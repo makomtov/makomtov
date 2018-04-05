@@ -7,13 +7,17 @@ import { SharedService } from '../shared/shared.service';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService) {}
 
   public user;
 
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  fromModel;
+  toModel;
+  fromMin;
+
   ngOnInit() {
     this.dropdownList = [
       { 'id': 1, 'itemName': 'שאגי', 'food': false, 'training': false, vaccinationDate: '17/02/2018' },
@@ -22,12 +26,16 @@ export class ReservationComponent implements OnInit {
       { 'id': 4, 'itemName': 'בל', 'food': false, 'training': false, vaccinationDate: '17/02/2018'}
     ];
 
+    var d: Date = new Date();
+    this.fromMin = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
+
     this.dropdownSettings = {
       text: 'בחר כלבים',
       selectAllText: 'בחר את כולם',
       unSelectAllText: 'הסר את כולם',
     };
   }
+
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
@@ -58,6 +66,5 @@ export class ReservationComponent implements OnInit {
       let objIndex = this.selectedItems.findIndex((obj => obj.id == event.id));
       this.selectedItems[objIndex].training = event.value;
     }
-
   }
 }

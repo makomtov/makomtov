@@ -22,12 +22,16 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 import { DogsTableComponent } from './reservation/dogs-table/dogs-table.component';
 
 import { FacebookModule } from 'ngx-facebook';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LoginRouteGuardService} from './services/login-route-guard.service';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
+import { MyDogsComponent } from './my-dogs/my-dogs.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
+  // { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
+  { path: 'reservation', component: ReservationComponent },
+  { path: 'mydogs', component: MyDogsComponent },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -46,13 +50,15 @@ const appRoutes: Routes = [
     ContactComponent,
     LoginComponent,
     DogsTableComponent,
-    CustomModalComponent
+    CustomModalComponent,
+    MyDogsComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     HttpClientModule,
     AngularMultiSelectModule,
+    NgbModule.forRoot(),
     ModalDialogModule.forRoot(),
     RouterModule.forRoot(
       appRoutes

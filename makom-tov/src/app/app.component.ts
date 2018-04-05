@@ -6,7 +6,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 })
 export class AppComponent {
   header = [{ name: 'הזמנה חדשה', route: '/reservation', isNeedLogin: true },
-    { name: 'הכלבים שלי', route: '/reservation', isNeedLogin: true},
+    { name: 'הכלבים שלי', route: '/mydogs', isNeedLogin: true},
     { name: 'צור קשר', route: '/contact', isNeedLogin: false}];
 
     home = '/home';
