@@ -1,0 +1,15 @@
+<div class="row justify-content-md-center">
+  <div class="col-sm-2 form-group">
+    <label>תאריך הזמנה</label>
+    <label> {{reservationDetails.resDate}}</label>
+  </div>
+  <div class="col-sm-2 form-group">
+    <label>תאריך הגעה</label>
+    <label> {{reservationDetails.startDate}}</label>
+  </div>
+  <div class="col-sm-2 form-group">
+    <label>תאריך עזיבה</label>
+    <label> {{reservationDetails.endDate}}</label>
+  </div>
+</div>
+<app-dogs-table class="dogsTable" [selectedDogs]="dogsList"></app-dogs-table>

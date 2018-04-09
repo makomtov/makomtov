@@ -1,0 +1,20 @@
+<div class="table-responsive">
+  <table class="table table-hover" style="direction: rtl; text-align: right">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">תאריך הזמנה</th>
+        <th scope="col">תאריך הגעה</th>
+        <th scope="col">תאריך עזיבה</th>
+        <th scope="col">מספר כלבים</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations" (click)="openResDetail(reservation)">
+        <th scope="row">{{reservation.resDate}}</th>
+        <td>{{reservation.startDate}}</td>
+        <td>{{reservation.endDate}}</td>
+        <td>{{reservation.dogsNum}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

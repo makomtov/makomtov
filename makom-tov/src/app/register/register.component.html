@@ -1,0 +1,211 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <div class="form-body">
+        <div class="modal-header">
+          <ul class="nav nav-tabs final-login modal-title" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#Login">התחבר</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#Registration">הרשם</a>
+            </li>
+          </ul>
+        </div>
+
+        <img class="image-circle" src="https://lh3.googleusercontent.com/-ruiRxPDtB2g/WgF2qa5gu2I/AAAAAAAABhI/EFAOBlqKl4IC3QY9oyHd8fMQa7WxQvmKgCL0BGAYYCw/h202/2017-11-07.png">
+
+        <div class="tab-content">
+          <div id="Login" class="tab-pane active">
+            <div class="social-login">
+              <div class="facebookButton">
+                <button type="button" (click)="FacebookLogin()">
+                  התחבר באמצעות Facebook
+                  <i class="fa fa-facebook"></i>
+                </button>
+              </div>
+            </div>
+            <div class="innter-form">
+              <form [formGroup]="loginForm" class="sa-innate-form" (ngSubmit)="onSubmitLogin()">
+                <label>כתובת דואר אלקטרוני</label>
+                <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני...">
+                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="alert alert-danger">
+                  <div *ngIf="loginForm.get('email').errors.regexCheck && !(loginForm.get('email').errors.required)">
+                    כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
+                  </div>
+                </div>
+                <label>סיסמא</label>
+                <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה...">
+                <div *ngIf="loginForm.get('pass').invalid && (loginForm.get('pass').dirty || loginForm.get('pass').touched)" class="alert alert-danger">
+                  <div *ngIf="loginForm.get('pass').errors.regexCheck && !(loginForm.get('pass').errors.required)">
+                    סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
+                  </div>
+                </div>
+                <button [disabled]="loginForm.status === 'INVALID'" type="submit" class="btn">התחבר</button>
+                <div>
+                  <a href="">שכחתי סיסמה</a>
+                </div>
+              </form>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div id="Registration" class="tab-pane fade">
+            <div class="social-login">
+              <div class="facebookButton">
+                <button type="button" (click)="FacebookRegister()">
+                  הרשם באמצעות Facebook
+                  <i class="fa fa-facebook"></i>
+                </button>
+              </div>
+            </div>
+            <div class="innter-form">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" class="sa-innate-form">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>שם פרטי</label>
+                    <input formControlName="firstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
+                    <div *ngIf="registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('firstName').errors.required">
+                        אנא הזן שם פרטי
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>שם משפחה</label>
+                    <input formControlName="lastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
+                    <div *ngIf="registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('lastName').errors.required">
+                        אנא הזן שם משפחה
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>עיר</label>
+                    <input formControlName="city" type="text" placeholder="הקלד כאן עיר..." class="form-control">
+                    <div *ngIf="registerForm.get('city').invalid && (registerForm.get('city').dirty || registerForm.get('city').touched)" class="alert alert-danger">
+                      <div *ngIf="registerForm.get('city').errors.required">
+                        אנא הזן עיר
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label>כתובת</label>
+                    <input formControlName="address" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
+                    <div *ngIf="registerForm.get('address').invalid && (registerForm.get('address').dirty || registerForm.get('address').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('address').errors.required">
+                        אנא הזן כתובת
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>תאריך לידה</label>
+                    <div class="input-group date-picker">
+                      <input formControlName="birthday" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                        ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="control-label">מין</label>
+                    <div class="input-group radio-btn">
+                      <label class="btn btn-outline-secondary">
+                        <input type="radio" formControlName="gender" value="male"> זכר
+                      </label>
+                      <label class="btn btn-outline-secondary">
+                        <input type="radio" formControlName="gender" value="female"> נקבה
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>מספר טלפון</label>
+                    <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('phoneNumber').invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('phoneNumber').errors.required">
+                        אנא הזן מספר טלפון
+                      </div>
+                      <div *ngIf="registerForm.get('phoneNumber').errors.regexCheck && !(registerForm.get('phoneNumber').errors.required)">
+                        מספר הטלפון שהוזן לא חוקי
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="align-baseline">מספר טלפון נוסף</label>
+                    <span class="align-text-top">(אופציונלי)</span>
+                    <input formControlName="phoneNumber2" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('phoneNumber2').invalid && (registerForm.get('phoneNumber2').dirty || registerForm.get('phoneNumber2').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('phoneNumber2').errors.regexCheck && !(registerForm.get('phoneNumber2').errors.required)">
+                        מספר הטלפון שהוזן לא חוקי
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label>שם וטרינר מטפל</label>
+                    <input formControlName="veterinarian" type="text" placeholder="הקלד כאן שם וטרינר מטפל..." class="form-control">
+                    <div *ngIf="registerForm.get('veterinarian').invalid && (registerForm.get('veterinarian').dirty || registerForm.get('veterinarian').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('veterinarian').errors.required">
+                        אנא הזן שם וטרינר מטפל
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="align-baseline">טלפון וטרינר מטפל</label>
+                    <input formControlName="veterinarianPhone" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('veterinarianPhone').invalid && (registerForm.get('veterinarianPhone').dirty || registerForm.get('veterinarianPhone').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('veterinarianPhone').errors.required">
+                        אנא הזן מספר טלפון
+                      </div>
+                      <div *ngIf="registerForm.get('veterinarianPhone').errors.regexCheck && !(registerForm.get('veterinarianPhone').errors.required)">
+                        מספר הטלפון שהוזן לא חוקי
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>כתובת דואר אלקטרוני</label>
+                  <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני..." class="form-control">
+                  <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.get('email').errors.required">
+                      אנא הזן כתובת דואר אלקטרוני
+                    </div>
+                    <div *ngIf="registerForm.get('email').errors.regexCheck && !(registerForm.get('email').errors.required)">
+                      כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>סיסמה</label>
+                  <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה..." class="form-control">
+                  <div *ngIf="registerForm.get('pass').invalid && (registerForm.get('pass').dirty || registerForm.get('pass').touched)" class="alert alert-danger">
+                    <div *ngIf="registerForm.get('pass').errors.required">
+                      אנא הזן סיסמה
+                    </div>
+                    <div *ngIf="registerForm.get('pass').errors.regexCheck && !(registerForm.get('pass').errors.required)">
+                      סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
+                    </div>
+                  </div>
+                </div>
+                <button [disabled]="registerForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
+                <p>By clicking, you agree to hifriends's User Agreement, Privacy Policy, and Cookie Policy.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
