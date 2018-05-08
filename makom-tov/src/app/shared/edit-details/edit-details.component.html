@@ -3,68 +3,85 @@
     <button type="button" class="close" aria-label="Close" (click)="d()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h4 *ngIf="dogDetails" class="modal-title">עריכה - {{dogDetails.name}}</h4>
-    <h4 *ngIf="!dogDetails" class="modal-title">כלב חדש</h4>
+    <h4 *ngIf="dogDetails.id" class="modal-title">עריכה - {{dogDetails.name}}</h4>
+    <h4 *ngIf="!dogDetails.id" class="modal-title">כלב חדש</h4>
   </div>
-  <div class="modal-body">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" [value]="dogDetails.name" placeholder="הזן את שם הכלב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">שם</span>
+  <div class="modal-body" style="	text-align: right;">
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <label>שם</label>
+        <input type="text" class="form-control" [value]="dogDetails.name" placeholder="הזן את שם הכלב">
+      </div>
+      <div class="col-lg-6 form-group">
+        <label>סוג</label>
+        <input type="text" class="form-control" [value]="dogDetails.type" placeholder="הזן את סוג הכלב">
       </div>
     </div>
-    <div class="input-group mb-3">
-      <!-- TODO: value/ngModel - decide -->
-      <input type="text" class="form-control" [value]="dogDetails.type" placeholder="הזן את סוג הכלב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">סוג</span>
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <label>שבב</label>
+        <input type="number" class="form-control" [value]="dogDetails.shvav" placeholder="הזן את מספר השבב">
       </div>
-    </div>
-    <div class="input-group mb-3">
-      <input type="number" class="form-control" [value]="dogDetails.shvav" placeholder="הזן את מספר השבב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">שבב</span>
-      </div>
-    </div>
-    <div class="input-group mb-3">
-      <select class="custom-select" id="inputGroupSelect02">
+      <div class="col-lg-6 form-group">
+        <label>מין</label>
+        <select class="custom-select" id="inputGroupSelect02">
       <!-- TODO: select gender on edit - problem: not number -->
       <option selected>בחר מין</option>
       <option value="1">זכר</option>
       <option value="2">נקבה</option>
     </select>
-      <div class="input-group-append">
-        <label class="input-group-text" for="inputGroupSelect02">מין</label>
       </div>
     </div>
-    <form class="form-inline">
-      <div class="form-group">
-        <div class="input-group">
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <label>תאריך לידה</label>
+        <div class="input-group date-picker">
           <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.birthDate" name="dp" [(ngModel)]="birthDate" ngbDatepicker
-            #date="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="date.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
-          </div>
+            #date="ngbDatepicker" (click)="date.toggle()">
         </div>
-        <b>:תאריך לידה </b>
       </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <div class="input-group">
+      <div class="col-lg-6 form-group">
+        <label>תאריך חיסון כלבת</label>
+        <div class="input-group date-picker">
           <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.vaccinationDate" name="dp" [(ngModel)]="vaccinationDate"
-            ngbDatepicker #ddate="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="ddate.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
-          </div>
+            ngbDatepicker #ddate="ngbDatepicker" (click)="ddate.toggle()">
         </div>
-        <b>:תאריך חיסון כלבת </b>
       </div>
-    </form>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <div class="form-check">
+          <label>
+						<input type="checkbox" name="check"> <span class="label-text">?מסורס</span>
+					</label>
+        </div>
+        <div class="form-check">
+          <label>
+						<input type="checkbox" name="check"> <span class="label-text">?קופץ</span>
+					</label>
+        </div>
+      </div>
+      <div class="col-lg-6 form-group">
+        <div class="form-check">
+          <label>
+						<input type="checkbox" name="check"> <span class="label-text">?ידידותי</span>
+					</label>
+        </div>
+        <div class="form-check">
+          <label>
+						<input type="checkbox" name="check"> <span class="label-text">?חופר</span>
+					</label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label>הערות</label>
+      <div class="input-group" dir="rtl">
+        <textarea type="text" class="form-control" rows="5">
+          {{ dogDetails.comments }}
+        </textarea>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" aria-label="Close" (click)="d()">ביטול</button>
@@ -72,11 +89,11 @@
   </div>
 </ng-template>
 
-<button type="button" *ngIf="dogDetails" class="btn btn-info" aria-label="Right Align" (click)="sharedService.open(content); initModal();"
+<button type="button" *ngIf="dogDetails.id" class="btn btn-info" aria-label="Right Align" (click)="sharedService.open(content); initModal();"
   placement="top" ngbTooltip="עריכה">
   <span class="fa fa-pencil fa-lg" aria-hidden="true"></span>
 </button>
-<button type="button" *ngIf="!dogDetails" class="btn btn-info circle" aria-label="Right Align" (click)="sharedService.open(content); initModal();"
+<button type="button" *ngIf="!dogDetails.id" style="width: 65px; height: 65px;" class="btn btn-info circle" aria-label="Right Align" (click)="sharedService.open(content); initModal();"
   placement="top" ngbTooltip="הוספת כלב">
-  <span class="fa fa-plus fa-lg" aria-hidden="true"></span>
+  <span class="fa fa-plus fa-lg" aria-hidden="true" style="font-size: 2em"></span>
 </button>

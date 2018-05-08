@@ -7,7 +7,6 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
 import { FbServiceService } from './services/fb-service.service';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -83,7 +82,6 @@ const appRoutes: Routes = [
     ModalDialogModule.forRoot(),
     NgbModule.forRoot(),
     ReactiveFormsModule,
-    ShowHidePasswordModule.forRoot()
   ],
   providers: [FbServiceService, LoginRouteGuardService, SharedService, RegisterComponent],
   entryComponents: [RegisterComponent, ReservationDetailsComponent],

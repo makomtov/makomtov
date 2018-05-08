@@ -1,4 +1,7 @@
-<div class="row" style="direction: rtl; width: 100%; margin-top:2%;">
+<div style="margin-top:1%; padding-left: 1%">
+  <app-edit-details></app-edit-details>
+</div>
+<div class="row" style="direction: rtl; width: 100%; margin-top:0.5%;">
   <div class="col-sm-4" *ngFor="let dog of myDogs" style="margin-bottom: 3%">
     <div class="card text-right bg-light" style="width: 18rem;">
       <img class="card-img-top" [src]="getSrc(dog.image)" alt="Card image cap" style="height:160px">
@@ -31,8 +34,8 @@
         <!-- <button type="button" class="btn btn-info" aria-label="Right Align" placement="top" ngbTooltip="עריכה">
          <span class="fa fa-pencil fa-lg" aria-hidden="true"></span>
        </button> -->
-       <app-edit-details [dogDetails]="dog"></app-edit-details>
-       </div>
+        <app-edit-details [dogDetails]="dog"></app-edit-details>
+      </div>
     </div>
   </div>
 </div>

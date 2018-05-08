@@ -13,14 +13,20 @@
         <th scope="row">{{dog.itemName}}</th>
         <td>{{dog.vaccinationDate}}</td>
         <td>
-          <input type="checkbox" (change)="changeCheckbox.next({action:1,id:dog.id, value:$event.target.checked})">
+          <div class="form-check">
+            <label>
+          <input type="checkbox" (change)="changeCheckbox.next({action:1,id:dog.id, value:$event.target.checked})"><span class="label-text"></span>
+					</label>
+          </div>
         </td>
         <td>
-          <input type="checkbox" (change)="changeCheckbox.next({action:2,id:dog.id, value:$event.target.checked})">
+          <div class="form-check">
+            <label>
+          <input type="checkbox" (change)="changeCheckbox.next({action:2,id:dog.id, value:$event.target.checked})"><span class="label-text"></span>
+					</label>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<app-edit-details></app-edit-details>
