@@ -10,10 +10,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let reservation of reservations" (click)="openResDetail(reservation)">
-        <th scope="row">{{reservation.resDate}}</th>
-        <td>{{reservation.startDate}}</td>
-        <td>{{reservation.endDate}}</td>
-        <td>{{reservation.dogsNum}}</td>
+        <th scope="row">{{reservation.OrderDate}}</th>
+        <td>{{reservation.FromDate}}</td>
+        <td>{{reservation.ToDate}}</td>
+        <td>{{reservation.mDogs.length}}</td>
       </tr>
     </tbody>
   </table>

@@ -5,3 +5,16 @@
 input {
   direction: rtl;
 }
+
+.radio {
+  direction: rtl;
+  text-align: right;
+  margin: 2%;
+}
+
+.container {
+  font-size:13px;
+  padding:10px;
+  outline:none;
+	width:100%;
+}

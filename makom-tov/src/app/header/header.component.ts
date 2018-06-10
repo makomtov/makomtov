@@ -1,6 +1,5 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
-import { CustomModalComponent } from '../custom-modal/custom-modal.component';
 import { FbServiceService } from '../services/fb-service.service';
 import { RegisterComponent } from '../register/register.component';
 import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
@@ -16,12 +15,17 @@ export class HeaderComponent {
   @Input() headerList;
   @Input() homeroute;
 
-  public user;
+  user = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(private modalService: NgbModal) { }
 
-    Login() {
+    login() {
       const modalRef = this.modalService.open(RegisterComponent);
-      modalRef.componentInstance.name = 'World';
+    }
+
+    logout() {
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('currentUser');
+      this.user = null;
     }
 }

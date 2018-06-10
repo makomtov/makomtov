@@ -13,7 +13,7 @@
           </ul>
         </div>
 
-        <img class="image-circle" src="https://lh3.googleusercontent.com/-ruiRxPDtB2g/WgF2qa5gu2I/AAAAAAAABhI/EFAOBlqKl4IC3QY9oyHd8fMQa7WxQvmKgCL0BGAYYCw/h202/2017-11-07.png">
+        <img class="image-circle" src="https://lh3.googleUsercontent.com/-ruiRxPDtB2g/WgF2qa5gu2I/AAAAAAAABhI/EFAOBlqKl4IC3QY9oyHd8fMQa7WxQvmKgCL0BGAYYCw/h202/2017-11-07.png">
 
         <div class="tab-content">
           <div id="Login" class="tab-pane active">
@@ -28,18 +28,23 @@
             <div class="innter-form">
               <form [formGroup]="loginForm" class="sa-innate-form" (ngSubmit)="onSubmitLogin()">
                 <label>כתובת דואר אלקטרוני</label>
-                <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני...">
-                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="alert alert-danger">
-                  <div *ngIf="loginForm.get('email').errors.regexCheck && !(loginForm.get('email').errors.required)">
+                <input formControlName="Useremail" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני...">
+                <div *ngIf="loginForm.get('Useremail').invalid && (loginForm.get('Useremail').dirty || loginForm.get('Useremail').touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="loginForm.get('Useremail').errors.regexCheck && !(loginForm.get('Useremail').errors.required)">
                     כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
                   </div>
                 </div>
                 <label>סיסמא</label>
-                <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה...">
-                <div *ngIf="loginForm.get('pass').invalid && (loginForm.get('pass').dirty || loginForm.get('pass').touched)" class="alert alert-danger">
-                  <div *ngIf="loginForm.get('pass').errors.regexCheck && !(loginForm.get('pass').errors.required)">
+                <input formControlName="UserPaswrd" type="password" placeholder="הקלד כאן סיסמה רצויה...">
+                <div *ngIf="loginForm.get('UserPaswrd').invalid && (loginForm.get('UserPaswrd').dirty || loginForm.get('UserPaswrd').touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="loginForm.get('UserPaswrd').errors.regexCheck && !(loginForm.get('UserPaswrd').errors.required)">
                     סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
                   </div>
+                </div>
+                <div *ngIf="WrongloginDetails" class="alert alert-danger">
+                  פרטי התחברות שגויים אנא נסה שנית
                 </div>
                 <button [disabled]="loginForm.status === 'INVALID'" type="submit" class="btn">התחבר</button>
                 <div>
@@ -63,20 +68,20 @@
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>שם פרטי</label>
-                    <input formControlName="firstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
-                    <div *ngIf="registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)"
+                    <input formControlName="UserFirstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
+                    <div *ngIf="registerForm.get('UserFirstName').invalid && (registerForm.get('UserFirstName').dirty || registerForm.get('UserFirstName').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('firstName').errors.required">
+                      <div *ngIf="registerForm.get('UserFirstName').errors.required">
                         אנא הזן שם פרטי
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-6 form-group">
                     <label>שם משפחה</label>
-                    <input formControlName="lastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
-                    <div *ngIf="registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)"
+                    <input formControlName="UserLastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
+                    <div *ngIf="registerForm.get('UserLastName').invalid && (registerForm.get('UserLastName').dirty || registerForm.get('UserLastName').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('lastName').errors.required">
+                      <div *ngIf="registerForm.get('UserLastName').errors.required">
                         אנא הזן שם משפחה
                       </div>
                     </div>
@@ -85,25 +90,32 @@
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label>עיר</label>
-                    <input formControlName="city" type="text" placeholder="הקלד כאן עיר..." class="form-control">
-                    <div *ngIf="registerForm.get('city').invalid && (registerForm.get('city').dirty || registerForm.get('city').touched)" class="alert alert-danger">
-                      <div *ngIf="registerForm.get('city').errors.required">
+                    <input type="text" formControlName="Usercityname" list="cities" placeholder="הקלד כאן עיר..." class="form-control">
+                    <datalist id="cities">
+                      <option *ngFor="let obj of cities" [value]="obj.itemName"></option>
+                    </datalist>
+                    <div *ngIf="registerForm.get('Usercityname').invalid && (registerForm.get('Usercityname').dirty || registerForm.get('Usercityname').touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="registerForm.get('Usercityname').errors.required">
                         אנא הזן עיר
+                      </div>
+                      <div *ngIf="registerForm.get('Usercityname').errors.cityCheck && !(registerForm.get('Usercityname').errors.required)">
+                        אנא הזן עיר מהרשימה
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-6 form-group">
                     <label>כתובת</label>
-                    <input formControlName="address" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
-                    <div *ngIf="registerForm.get('address').invalid && (registerForm.get('address').dirty || registerForm.get('address').touched)"
+                    <input formControlName="Useraddress" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
+                    <div *ngIf="registerForm.get('Useraddress').invalid && (registerForm.get('Useraddress').dirty || registerForm.get('Useraddress').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('address').errors.required">
+                      <div *ngIf="registerForm.get('Useraddress').errors.required">
                         אנא הזן כתובת
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-lg-6 form-group">
                     <label>תאריך לידה</label>
                     <div class="input-group date-picker">
@@ -122,17 +134,17 @@
                       </label>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label>מספר טלפון</label>
-                    <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
-                    <div *ngIf="registerForm.get('phoneNumber').invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)"
+                    <input formControlName="UserPhone1" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('UserPhone1').invalid && (registerForm.get('UserPhone1').dirty || registerForm.get('UserPhone1').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('phoneNumber').errors.required">
+                      <div *ngIf="registerForm.get('UserPhone1').errors.required">
                         אנא הזן מספר טלפון
                       </div>
-                      <div *ngIf="registerForm.get('phoneNumber').errors.regexCheck && !(registerForm.get('phoneNumber').errors.required)">
+                      <div *ngIf="registerForm.get('UserPhone1').errors.regexCheck && !(registerForm.get('UserPhone1').errors.required)">
                         מספר הטלפון שהוזן לא חוקי
                       </div>
                     </div>
@@ -140,10 +152,10 @@
                   <div class="col-lg-6 form-group">
                     <label class="align-baseline">מספר טלפון נוסף</label>
                     <span class="align-text-top">(אופציונלי)</span>
-                    <input formControlName="phoneNumber2" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
-                    <div *ngIf="registerForm.get('phoneNumber2').invalid && (registerForm.get('phoneNumber2').dirty || registerForm.get('phoneNumber2').touched)"
+                    <input formControlName="UserPhone2" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('UserPhone2').invalid && (registerForm.get('UserPhone2').dirty || registerForm.get('UserPhone2').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('phoneNumber2').errors.regexCheck && !(registerForm.get('phoneNumber2').errors.required)">
+                      <div *ngIf="registerForm.get('UserPhone2').errors.regexCheck && !(registerForm.get('UserPhone2').errors.required)">
                         מספר הטלפון שהוזן לא חוקי
                       </div>
                     </div>
@@ -152,23 +164,23 @@
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label>שם וטרינר מטפל</label>
-                    <input formControlName="veterinarian" type="text" placeholder="הקלד כאן שם וטרינר מטפל..." class="form-control">
-                    <div *ngIf="registerForm.get('veterinarian').invalid && (registerForm.get('veterinarian').dirty || registerForm.get('veterinarian').touched)"
+                    <input formControlName="VeterinarName" type="text" placeholder="הקלד כאן שם וטרינר מטפל..." class="form-control">
+                    <div *ngIf="registerForm.get('VeterinarName').invalid && (registerForm.get('VeterinarName').dirty || registerForm.get('VeterinarName').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('veterinarian').errors.required">
+                      <div *ngIf="registerForm.get('VeterinarName').errors.required">
                         אנא הזן שם וטרינר מטפל
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-6 form-group">
                     <label class="align-baseline">טלפון וטרינר מטפל</label>
-                    <input formControlName="veterinarianPhone" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
-                    <div *ngIf="registerForm.get('veterinarianPhone').invalid && (registerForm.get('veterinarianPhone').dirty || registerForm.get('veterinarianPhone').touched)"
+                    <input formControlName="VeterinarPhone1" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+                    <div *ngIf="registerForm.get('VeterinarPhone1').invalid && (registerForm.get('VeterinarPhone1').dirty || registerForm.get('VeterinarPhone1').touched)"
                       class="alert alert-danger">
-                      <div *ngIf="registerForm.get('veterinarianPhone').errors.required">
+                      <div *ngIf="registerForm.get('VeterinarPhone1').errors.required">
                         אנא הזן מספר טלפון
                       </div>
-                      <div *ngIf="registerForm.get('veterinarianPhone').errors.regexCheck && !(registerForm.get('veterinarianPhone').errors.required)">
+                      <div *ngIf="registerForm.get('VeterinarPhone1').errors.regexCheck && !(registerForm.get('VeterinarPhone1').errors.required)">
                         מספר הטלפון שהוזן לא חוקי
                       </div>
                     </div>
@@ -176,28 +188,40 @@
                 </div>
                 <div class="form-group">
                   <label>כתובת דואר אלקטרוני</label>
-                  <input formControlName="email" type="email" placeholder="הקלד כאן כתובת דואר אלקטרוני..." class="form-control">
-                  <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+                  <input formControlName="Useremail" type="Useremail" placeholder="הקלד כאן כתובת דואר אלקטרוני..." class="form-control">
+                  <div *ngIf="registerForm.get('Useremail').invalid && (registerForm.get('Useremail').dirty || registerForm.get('Useremail').touched)"
                     class="alert alert-danger">
-                    <div *ngIf="registerForm.get('email').errors.required">
+                    <div *ngIf="registerForm.get('Useremail').errors.required">
                       אנא הזן כתובת דואר אלקטרוני
                     </div>
-                    <div *ngIf="registerForm.get('email').errors.regexCheck && !(registerForm.get('email').errors.required)">
+                    <div *ngIf="registerForm.get('Useremail').errors.regexCheck && !(registerForm.get('Useremail').errors.required)">
                       כתובת דואר אלקטרוני לא חוקית (דוגמה :bob@abc.com)
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>סיסמה</label>
-                  <input formControlName="pass" type="password" placeholder="הקלד כאן סיסמה רצויה..." class="form-control">
-                  <div *ngIf="registerForm.get('pass').invalid && (registerForm.get('pass').dirty || registerForm.get('pass').touched)" class="alert alert-danger">
-                    <div *ngIf="registerForm.get('pass').errors.required">
+                  <input formControlName="UserPaswrd" type="password" placeholder="הקלד כאן סיסמה רצויה..." class="form-control">
+                  <div *ngIf="registerForm.get('UserPaswrd').invalid && (registerForm.get('UserPaswrd').dirty || registerForm.get('UserPaswrd').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.get('UserPaswrd').errors.required">
                       אנא הזן סיסמה
                     </div>
-                    <div *ngIf="registerForm.get('pass').errors.regexCheck && !(registerForm.get('pass').errors.required)">
+                    <div *ngIf="registerForm.get('UserPaswrd').errors.regexCheck && !(registerForm.get('UserPaswrd').errors.required)">
                       סיסמה לא חוקית, הסיסמה חייבת להיות באורך 8 תווים ולהכיל לפחות אות קטנה, גדולה ומספר ללא תווים מיוחדים
                     </div>
                   </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    <input formControlName="accept" type="checkbox"> הנני מוכן לקבל הודעות על מבצעים,הנחות ועדכונים
+                  </label>
+                </div>
+                <div *ngIf="DuplicateRegisterDetails" class="alert alert-danger">
+                  כתובת המייל רשומה כבר במערכת
+                </div>
+                <div *ngIf="WrongRegisterDetails" class="alert alert-danger">
+                  אחד או יותר מהשדות ריקים
                 </div>
                 <button [disabled]="registerForm.status === 'INVALID'" type="submit" class="btn">הרשם</button>
                 <p>By clicking, you agree to hifriends's User Agreement, Privacy Policy, and Cookie Policy.</p>
@@ -209,3 +233,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss" class="modal">
+  <div class="modal-header">
+    <h4 class="modal-title">ההרשמה בוצעה בהצלחה!</h4>
+  </div>
+  <div class="modal-body">
+    <p> אנא התחבר למערכת</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

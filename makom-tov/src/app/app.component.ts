@@ -5,7 +5,8 @@ import { Component, ViewContainerRef } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  header = [{ name: 'הזמנה חדשה', route: '/reservation', isNeedLogin: true },
+  header =
+    [{ name: 'הזמנה חדשה', route: '/reservation', isNeedLogin: true },
     { name: 'הכלבים שלי', route: '/mydogs', isNeedLogin: true},
     { name: 'פרטים אישיים', route: '/profile', isNeedLogin: true },
     { name: 'היסטוריית הזמנות', route: '/history', isNeedLogin: true },

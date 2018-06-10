@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  makomTovServer: 'http://localhost:53698/api'
+  makomTovServer: 'http://localhost:53698'
 };

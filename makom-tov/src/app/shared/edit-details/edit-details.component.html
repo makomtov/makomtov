@@ -3,25 +3,25 @@
     <button type="button" class="close" aria-label="Close" (click)="d()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h4 *ngIf="dogDetails" class="modal-title">עריכה - {{dogDetails.name}}</h4>
+    <h4 *ngIf="dogDetails" class="modal-title">עריכה - {{dogDetails.DogName}}</h4>
     <h4 *ngIf="!dogDetails" class="modal-title">כלב חדש</h4>
   </div>
   <div class="modal-body">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" [value]="dogDetails.name" placeholder="הזן את שם הכלב">
+      <input type="text" class="form-control" [value]="dogDetails.DogName" placeholder="הזן את שם הכלב">
       <div class="input-group-append">
         <span class="input-group-text" id="basic-addon2">שם</span>
       </div>
     </div>
     <div class="input-group mb-3">
       <!-- TODO: value/ngModel - decide -->
-      <input type="text" class="form-control" [value]="dogDetails.type" placeholder="הזן את סוג הכלב">
+      <input type="text" class="form-control" [value]="dogDetails.DogType" placeholder="הזן את סוג הכלב">
       <div class="input-group-append">
         <span class="input-group-text" id="basic-addon2">סוג</span>
       </div>
     </div>
     <div class="input-group mb-3">
-      <input type="number" class="form-control" [value]="dogDetails.shvav" placeholder="הזן את מספר השבב">
+      <input type="number" class="form-control" [value]="dogDetails.DogShvav" placeholder="הזן את מספר השבב">
       <div class="input-group-append">
         <span class="input-group-text" id="basic-addon2">שבב</span>
       </div>
@@ -40,7 +40,7 @@
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.birthDate" name="dp" [(ngModel)]="birthDate" ngbDatepicker
+          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.DogBirthDate" name="dp" [(ngModel)]="birthDate" ngbDatepicker
             #date="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="date.toggle()" type="button">
@@ -54,7 +54,7 @@
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.vaccinationDate" name="dp" [(ngModel)]="vaccinationDate"
+          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.DogRabiesVaccine" name="dp" [(ngModel)]="vaccinationDate"
             ngbDatepicker #ddate="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="ddate.toggle()" type="button">

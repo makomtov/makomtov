@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpRequestService } from '../services/http-request.service';
 
 @Component({
   selector: 'app-history-reservation',
@@ -10,27 +11,30 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HistoryReservationComponent implements OnInit {
 
   // @Input() reservations;
-  dogsList;
+  dogsList = [];
+  userId = JSON.parse(localStorage.getItem('currentUser')).UserID;
+  reservations;
 
-  reservations = [
-    { 'resDate': '18-12-2017', 'dogsNum': 2, 'startDate': '18-12-2017', 'endDate': '18-12-2017' },
-    { 'resDate': '15-09-2017', 'dogsNum': 1, 'startDate': '15-09-2017', 'endDate': '15-09-2017' },
-    { 'resDate': '18-01-2018', 'dogsNum': 4, 'startDate': '18-01-2018', 'endDate': '18-01-2018' },
-    { 'resDate': '22-03-2018', 'dogsNum': 3, 'startDate': '22-03-2018', 'endDate': '22-03-2018' }
-  ];
+  constructor(private modalService: NgbModal,
+    private httpReq: HttpRequestService) { }
 
-  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.httpReq.getUserReservation(this.userId).then(data => {
+      this.reservations = data.UserReservations;
+    });
   }
 
   openResDetail(reservation) {
-    this.dogsList = [
-      { 'id': 1, 'itemName': 'שאגי', 'food': false, 'training': false, vaccinationDate: '17/02/2018' },
-      { 'id': 2, 'itemName': 'כחלון', 'food': false, 'training': false, vaccinationDate: '17/02/2018' },
-      { 'id': 3, 'itemName': 'אראלה', 'food': false, 'training': false, vaccinationDate: '17/02/2018' },
-      { 'id': 4, 'itemName': 'בל', 'food': false, 'training': false, vaccinationDate: '17/02/2018' }
-    ];
+
+    // Init members
+    this.dogsList = [];
+
+    reservation.mDogs.forEach(element => {
+      const row1 = { 'id': element.DogNumber, 'itemName': element.DogName, 'food': element.HomeFood,
+        'training': element.DogTraining, vaccinationDate: element.DogRabiesVaccine };
+        this.dogsList.push(row1);
+    });
 
     const modalRef = this.modalService.open(ReservationDetailsComponent, { size: 'lg' });
     modalRef.componentInstance.reservationDetails = reservation;

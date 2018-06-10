@@ -14,7 +14,7 @@ export class ConfirmModalComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private sharedService: SharedService) { }
+  constructor(public sharedService: SharedService) { }
 
   ngOnInit() {
   }

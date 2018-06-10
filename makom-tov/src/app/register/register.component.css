@@ -88,10 +88,17 @@
 	outline:none;
 	width:100%;
 	margin:8px 0;
-	
+	overflow:hidden; overflow-y:scroll;
 }
-.radio-btn {
-	padding-top:4%;
+#cities {
+	font-size:13px;
+	padding:10px;
+	border:1px solid#ccc;
+	outline:none;
+	width:100%;
+	margin:8px 0;
+	overflow:hidden; overflow-y:scroll;
+	height: 10px;
 }
 .sa-innate-form button[type=submit]{
 	border:1px solid#e64b3b;
@@ -118,4 +125,9 @@
 	.align-text-top {
 		font-size:10px;
 	}
+
+#modal {
+	direction: rtl;
+	text-align: right;
+}
 

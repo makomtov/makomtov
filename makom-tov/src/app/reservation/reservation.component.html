@@ -2,23 +2,39 @@
   <div class="row">
     <div class="col">
       <form class="form-inline">
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromModel" placeholder="עד תאריך" name="dp" [(ngModel)]="toModel"
-              ngbDatepicker #to="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" (click)="to.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
+        <div class="row">
+
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromModel" placeholder="עד תאריך" name="dp" [(ngModel)]="toModel"
+                ngbDatepicker #to="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="to.toggle()" type="button">
+                  <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </button>
+              </div>
+            </div>
+            <div class="input-group" style="padding-left:3%">
+              <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromMin" placeholder="מתאריך" name="dp" [(ngModel)]="fromModel"
+                ngbDatepicker #from="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="from.toggle()" type="button">
+                  <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </button>
+              </div>
             </div>
           </div>
-          <div class="input-group" style="padding-left:3%">
-            <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromMin" placeholder="מתאריך" name="dp" [(ngModel)]="fromModel"
-              ngbDatepicker #from="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" (click)="from.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <!-- <label class="control-label">מין</label> -->
+            <div class="input-group radio-btn radio">
+              <label class="btn btn-outline-secondary">
+                <input type="radio" value="firstShift" name="shiftRadio" class="shiftRadio"> משמרת ראשונה
+              </label>
+              <label class="btn btn-outline-secondary">
+                <input type="radio" value="firstShift" name="shiftRadio" class="shiftRadio"> משמרת שניה
+              </label>
             </div>
           </div>
         </div>

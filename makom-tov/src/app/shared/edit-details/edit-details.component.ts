@@ -11,28 +11,28 @@ export class EditDetailsComponent implements OnInit {
   vaccinationDate;
 
   @Input() dogDetails = {
-    'id': '',
-    'name': "",
-    'birthDate': '',
-    'type': '',
-    'shvav': '',
-    'comments': '',
-    'image': '',
-    'gender': '',
-    'isNeuter': false,
-    'vaccinationDate': '' };
+    'DogNumber': '',
+    'DogName': '',
+    'DogBirthDate': '',
+    'DogType': '',
+    'DogShvav': '',
+    'DogComments': '',
+    'DogImage': '',
+    'DogGender': '',
+    'DogNeuter': false,
+    'DogRabiesVaccine': '' };
 
-  constructor(private sharedService : SharedService) { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
   }
 
   initModal() {
-    this.birthDate = "";
-    this.vaccinationDate = "";
+    this.birthDate = '';
+    this.vaccinationDate = '';
   }
 
-  saveDog(){
+  saveDog() {
     // TODO
   }
 

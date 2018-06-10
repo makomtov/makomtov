@@ -1,26 +1,26 @@
 <div class="row" style="direction: rtl; width: 100%; margin-top:2%;">
   <div class="col-sm-4" *ngFor="let dog of myDogs" style="margin-bottom: 3%">
     <div class="card text-right bg-light" style="width: 18rem;">
-      <img class="card-img-top" [src]="getSrc(dog.image)" alt="Card image cap" style="height:160px">
+      <img class="card-img-top" [src]="getSrc(dog.DogImage)" alt="Card image cap" style="height:160px">
       <div class="card-body">
-        <h3 class="card-title">{{ dog.name }}</h3>
+        <h3 class="card-title">{{ dog.DogName }}</h3>
         <table class="table">
           <tbody>
             <tr>
               <th scope="row">מין:</th>
-              <td>{{ dog.gender }}</td>
+              <td>{{ dog.DogGender }}</td>
             </tr>
             <tr>
               <th scope="row">גיל:</th>
-              <td>{{ calcAge(dog.birthDate) }}</td>
+              <td>{{ calcAge(dog.DogBirthDate) }}</td>
             </tr>
             <tr>
               <th scope="row">סוג:</th>
-              <td>{{ dog.type }}</td>
+              <td>{{ dog.DogType }}</td>
             </tr>
             <tr>
               <th scope="row">תאריך חיסון כלבת:</th>
-              <td>{{ dog.vaccinationDate }}</td>
+              <td>{{ dog.DogRabiesVaccine }}</td>
             </tr>
           </tbody>
         </table>

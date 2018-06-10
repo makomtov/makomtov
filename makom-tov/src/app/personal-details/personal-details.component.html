@@ -6,20 +6,20 @@
         <div class="row">
           <div class="col-sm-6 form-group">
             <label>שם פרטי</label>
-            <input formControlName="firstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
-            <div *ngIf="personalDetailsForm.get('firstName').invalid && (personalDetailsForm.get('firstName').dirty || personalDetailsForm.get('firstName').touched)"
+            <input formControlName="UserFirstName" type="text" placeholder="הקלד כאן שם פרטי..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('UserFirstName').invalid && (personalDetailsForm.get('UserFirstName').dirty || personalDetailsForm.get('UserFirstName').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('firstName').errors.required">
+              <div *ngIf="personalDetailsForm.get('UserFirstName').errors.required">
                 אנא הזן שם פרטי
               </div>
             </div>
           </div>
           <div class="col-sm-6 form-group">
             <label>שם משפחה</label>
-            <input formControlName="lastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
-            <div *ngIf="personalDetailsForm.get('lastName').invalid && (personalDetailsForm.get('lastName').dirty || personalDetailsForm.get('lastName').touched)"
+            <input formControlName="UserLastName" type="text" placeholder="הקלד כאן שם משפחה..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('UserLastName').invalid && (personalDetailsForm.get('UserLastName').dirty || personalDetailsForm.get('UserLastName').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('lastName').errors.required">
+              <div *ngIf="personalDetailsForm.get('UserLastName').errors.required">
                 אנא הזן שם משפחה
               </div>
             </div>
@@ -28,20 +28,26 @@
         <div class="row">
           <div class="col-lg-6 form-group">
             <label>עיר</label>
-            <input formControlName="city" type="text" placeholder="הקלד כאן עיר..." class="form-control">
-            <div *ngIf="personalDetailsForm.get('city').invalid && (personalDetailsForm.get('city').dirty || personalDetailsForm.get('city').touched)"
+            <input formControlName="UserCityName" list="cities" placeholder="הקלד כאן עיר..." class="form-control">
+            <datalist id="cities">
+              <option *ngFor="let obj of cities" [value]="obj.itemName"></option>
+            </datalist>
+            <div *ngIf="personalDetailsForm.get('UserCityName').invalid && (personalDetailsForm.get('UserCityName').dirty || personalDetailsForm.get('UserCityName').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('city').errors.required">
+              <div *ngIf="personalDetailsForm.get('UserCityName').errors.required">
                 אנא הזן עיר
+              </div>
+              <div *ngIf="personalDetailsForm.get('UserCityName').errors.cityCheck && !(personalDetailsForm.get('UserLastName').errors.required)">
+                אנא הזן עיר מהרשימה
               </div>
             </div>
           </div>
           <div class="col-lg-6 form-group">
             <label>כתובת</label>
-            <input formControlName="address" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
-            <div *ngIf="personalDetailsForm.get('address').invalid && (personalDetailsForm.get('address').dirty || personalDetailsForm.get('address').touched)"
+            <input formControlName="UserAddress" type="text" placeholder="הקלד כאן כתובת..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('UserAddress').invalid && (personalDetailsForm.get('UserAddress').dirty || personalDetailsForm.get('UserAddress').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('address').errors.required">
+              <div *ngIf="personalDetailsForm.get('UserAddress').errors.required">
                 אנא הזן כתובת
               </div>
             </div>
@@ -49,32 +55,53 @@
         </div>
         <div class="row">
           <div class="col-lg-6 form-group">
-            <label>תאריך לידה</label>
-            <div class="input-group date-picker">
-              <input formControlName="birthday" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
-                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            <label>מספר טלפון</label>
+            <input formControlName="UserPhone1" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('UserPhone1').invalid && (personalDetailsForm.get('UserPhone1').dirty || personalDetailsForm.get('UserPhone1').touched)"
+              class="alert alert-danger">
+              <div *ngIf="personalDetailsForm.get('UserPhone1').errors.required">
+                אנא הזן מספר טלפון
+              </div>
+              <div *ngIf="personalDetailsForm.get('UserPhone1').errors.regexCheck && !(personalDetailsForm.get('UserPhone1').errors.required)">
+                מספר הטלפון שהוזן לא חוקי
+              </div>
             </div>
           </div>
           <div class="col-lg-6 form-group">
-            <label>מספר פלאפון</label>
-            <input formControlName="phoneNumber" type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control">
-            <div *ngIf="personalDetailsForm.get('phoneNumber').invalid && (personalDetailsForm.get('phoneNumber').dirty || personalDetailsForm.get('phoneNumber').touched)"
+            <label>מספר טלפון נוסף</label>
+            <input formControlName="UserPhone2" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('UserPhone2').invalid && (personalDetailsForm.get('UserPhone2').dirty || personalDetailsForm.get('UserPhone2').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('phoneNumber').errors.required">
-                אנא הזן מספר פלאפון
-              </div>
-              <div *ngIf="personalDetailsForm.get('phoneNumber').errors.regexCheck && !(personalDetailsForm.get('phoneNumber').errors.required)">
-                מספר הפלאפון שהוזן לא חוקי
+              <div *ngIf="personalDetailsForm.get('UserPhone2').errors.regexCheck && !(personalDetailsForm.get('UserPhone2').errors.required)">
+                מספר הטלפון שהוזן לא חוקי
               </div>
             </div>
           </div>
         </div>
-        <label class="control-label">מין</label>
-        <div class="form-group">
-          <label class="btn btn-outline-primary">
-            <input type="radio" formControlName="gender" value="male"> זכר </label>
-          <label class="btn btn-outline-primary">
-            <input type="radio" formControlName="gender" value="female"> נקבה</label>
+        <div class="row">
+          <div class="col-lg-6 form-group">
+            <label>שם וטרינר מטפל</label>
+            <input formControlName="VeterinarName" type="text" placeholder="הקלד כאן שם וטרינר מטפל..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('VeterinarName').invalid && (personalDetailsForm.get('VeterinarName').dirty || personalDetailsForm.get('VeterinarName').touched)"
+              class="alert alert-danger">
+              <div *ngIf="personalDetailsForm.get('VeterinarName').errors.required">
+                אנא הזן שם וטרינר מטפל
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="align-baseline">טלפון וטרינר מטפל</label>
+            <input formControlName="VeterinarPhone1" type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control">
+            <div *ngIf="personalDetailsForm.get('VeterinarPhone1').invalid && (personalDetailsForm.get('VeterinarPhone1').dirty || personalDetailsForm.get('VeterinarPhone1').touched)"
+              class="alert alert-danger">
+              <div *ngIf="personalDetailsForm.get('VeterinarPhone1').errors.required">
+                אנא הזן מספר טלפון
+              </div>
+              <div *ngIf="personalDetailsForm.get('VeterinarPhone1').errors.regexCheck && !(personalDetailsForm.get('VeterinarPhone1').errors.required)">
+                מספר הטלפון שהוזן לא חוקי
+              </div>
+            </div>
+          </div>
         </div>
         <button [disabled]="personalDetailsForm.status === 'INVALID'" type="submit" class="updateButton btn btn-lg btn-info">עדכן!</button>
       </form>
@@ -82,6 +109,13 @@
   </div>
 </div>
 
+<!-- <label class="control-label">מין</label>
+        <div class="form-group">
+          <label class="btn btn-outline-primary">
+            <input type="radio" formControlName="gender" value="male"> זכר </label>
+          <label class="btn btn-outline-primary">
+            <input type="radio" formControlName="gender" value="female"> נקבה</label>
+        </div> -->
 <!-- <form>
   <div class="row">
     <div class="col-sm-6 form-group">
@@ -118,8 +152,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label>מספר פלאפון</label>
-    <input type="text" placeholder="הקלד כאן מספר פלאפון..." class="form-control" required>
+    <label>מספר טלפון</label>
+    <input type="text" placeholder="הקלד כאן מספר טלפון..." class="form-control" required>
   </div>
   <div class="form-group">
     <label>כתובת אימייל</label>

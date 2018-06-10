@@ -9,7 +9,12 @@ export class LoginRouteGuardService implements CanActivate {
   constructor(private modalService: NgbModal) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const modalRef = this.modalService.open(RegisterComponent);
-    return false;
+    if (!localStorage.getItem('userToken')) {
+      const modalRef = this.modalService.open(RegisterComponent);
+      return false;
+    } else {
+      console.log(localStorage.getItem('userToken'));
+      return true;
+    }
   }
 }

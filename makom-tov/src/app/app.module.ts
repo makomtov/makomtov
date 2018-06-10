@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { FbServiceService } from './services/fb-service.service';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -31,6 +31,10 @@ import { RegisterComponent } from './register/register.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 import { HistoryReservationComponent } from './history-reservation/history-reservation.component';
 import { ReservationDetailsComponent } from './history-reservation/reservation-details/reservation-details.component';
+import { HttpRequestService } from './services/http-request.service';
+import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
+import { SelectModule } from 'ng2-select';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -83,9 +87,16 @@ const appRoutes: Routes = [
     ModalDialogModule.forRoot(),
     NgbModule.forRoot(),
     ReactiveFormsModule,
-    ShowHidePasswordModule.forRoot()
+    ShowHidePasswordModule.forRoot(),
+    SelectModule
   ],
-  providers: [FbServiceService, LoginRouteGuardService, SharedService, RegisterComponent],
+  providers: [FbServiceService, LoginRouteGuardService, SharedService,
+    RegisterComponent, HttpClientModule, NgbActiveModal, HttpRequestService, ConfirmModalComponent,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   entryComponents: [RegisterComponent, ReservationDetailsComponent],
   bootstrap: [AppComponent]
 })
