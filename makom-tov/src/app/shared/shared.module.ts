@@ -5,14 +5,15 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     SlideshowModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CarouselComponent,

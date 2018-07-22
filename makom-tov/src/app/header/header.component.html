@@ -13,15 +13,22 @@
               <a class="nav-link" [routerLink]="title.route" routerLinkActive="active">{{ title.name }}
                 <span class="sr-only">(current)</span>
               </a>
-              <!-- <a class="nav-link" [routerLink]="title.route" routerLinkActive="active">{{ title.name }} <span class="sr-only">(current)</span></a> -->
             </li>
           </ul>
         </div>
       </div>
       <div class="col-lg-2">
-        <a>שלום, {{ user === null ? 'אורח' : user.UserFirstName}}</a>
-        <button type="button" *ngIf="user != null" (click)="logout()">התנתק</button>
-        <button type="button" *ngIf="user === null" (click)="login()">התחבר</button>
+        <div class="userName">
+          שלום, {{ user === null ? 'אורח' : user.UserFirstName}}
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="btn" *ngIf="user == null" (click)="login()">
+          <span>התחבר/הרשם</span>
+        </div>
+        <div class="btn" *ngIf="user !== null" (click)="logout()">
+          <span>התנתק</span>
+        </div>
       </div>
     </nav>
   </div>

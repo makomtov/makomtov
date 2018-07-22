@@ -38,16 +38,15 @@ import { AuthInterceptor } from './services/auth.interceptor';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-    // { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService]},
-  { path: 'reservation', component: ReservationComponent },
-  { path: 'mydogs', component: MyDogsComponent },
+  { path: 'reservation', component: ReservationComponent, canActivate: [LoginRouteGuardService] },
+  { path: 'mydogs', component: MyDogsComponent, canActivate: [LoginRouteGuardService] },
   {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: 'profile', component: PersonalDetailsComponent, canActivate: [LoginRouteGuardService] },
-  { path: 'history', component: HistoryReservationComponent },
+  { path: 'history', component: HistoryReservationComponent, canActivate: [LoginRouteGuardService] },
   { path: 'contact', component: ContactComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -66,7 +65,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     PersonalDetailsComponent,
     HistoryReservationComponent,
-    ReservationDetailsComponent
+    ReservationDetailsComponent,
   ],
   imports: [
     BrowserModule,

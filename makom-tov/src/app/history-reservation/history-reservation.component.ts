@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { HttpRequestService } from '../services/http-request.service';
 
 @Component({
@@ -14,14 +14,25 @@ export class HistoryReservationComponent implements OnInit {
   dogsList = [];
   userId = JSON.parse(localStorage.getItem('currentUser')).UserID;
   reservations;
+  orderByDateAsc = true;
 
   constructor(private modalService: NgbModal,
-    private httpReq: HttpRequestService) { }
+    private httpReq: HttpRequestService,
+    private parserFormatter: NgbDateParserFormatter) { }
 
 
   ngOnInit() {
     this.httpReq.getUserReservation(this.userId).then(data => {
       this.reservations = data.UserReservations;
+
+      this.reservations.sort((a, b) => {
+        const order = new Date(a.OrderDate).getTime() - new Date(b.OrderDate).getTime();
+        if (order === 0) {
+          return a.mDogs.length - b.mDogs.length;
+        } else {
+          return order;
+        }
+      });
     });
   }
 
@@ -41,4 +52,8 @@ export class HistoryReservationComponent implements OnInit {
     modalRef.componentInstance.dogsList = this.dogsList;
   }
 
+  sortOrderDate() {
+    this.reservations.reverse();
+    this.orderByDateAsc = !this.orderByDateAsc;
+  }
 }

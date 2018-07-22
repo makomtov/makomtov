@@ -28,16 +28,16 @@
         <div class="row">
           <div class="col-lg-6 form-group">
             <label>עיר</label>
-            <input formControlName="UserCityName" list="cities" placeholder="הקלד כאן עיר..." class="form-control">
+            <input formControlName="UserCity" list="cities" placeholder="הקלד כאן עיר..." class="form-control">
             <datalist id="cities">
               <option *ngFor="let obj of cities" [value]="obj.itemName"></option>
             </datalist>
-            <div *ngIf="personalDetailsForm.get('UserCityName').invalid && (personalDetailsForm.get('UserCityName').dirty || personalDetailsForm.get('UserCityName').touched)"
+            <div *ngIf="personalDetailsForm.get('UserCity').invalid && (personalDetailsForm.get('UserCity').dirty || personalDetailsForm.get('UserCity').touched)"
               class="alert alert-danger">
-              <div *ngIf="personalDetailsForm.get('UserCityName').errors.required">
+              <div *ngIf="personalDetailsForm.get('UserCity').errors.required">
                 אנא הזן עיר
               </div>
-              <div *ngIf="personalDetailsForm.get('UserCityName').errors.cityCheck && !(personalDetailsForm.get('UserLastName').errors.required)">
+              <div *ngIf="personalDetailsForm.get('UserCity').errors.cityCheck && !(personalDetailsForm.get('UserLastName').errors.required)">
                 אנא הזן עיר מהרשימה
               </div>
             </div>

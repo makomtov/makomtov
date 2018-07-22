@@ -1,46 +1,57 @@
-<div class="container" style="padding-bottom:4%">
+<div class="container">
   <div class="row">
     <div class="col">
-      <form class="form-inline">
+      <form [formGroup]="OrderForm">
         <div class="row">
-
-          <div class="form-group">
+          <div class="col">
             <div class="input-group">
-              <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromModel" placeholder="עד תאריך" name="dp" [(ngModel)]="toModel"
-                ngbDatepicker #to="ngbDatepicker">
+              <input ngbPopover="" triggers="mouseenter:mouseleave" popoverTitle="תאריך עזיבה" formControlName="ToDate" class="form-control"
+                (ngModelChange)="change()" [firstDayOfWeek]="7" [minDate]="fromModel" placeholder="עד תאריך" name="dp" [(ngModel)]="toModel"
+                ngbDatepicker #to="ngbDatepicker" (click)="to.toggle()">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="to.toggle()" type="button">
                   <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
                 </button>
               </div>
             </div>
+            <div class="row justify-content-md-center leftShift">
+              <div class="col-1.5">
+                <div class="form-group">
+                  <select ngbPopover="" triggers="mouseenter:mouseleave" popoverTitle="משמרת עזיבה" formControlName="ShiftNumberTo" (change)="change()"
+                    class="custom-select" id="inputGroupSelect02">
+                    <option *ngFor="let shift of shifts" value={{shift.ShiftNumber}}>{{ shift.Description }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
             <div class="input-group" style="padding-left:3%">
-              <input class="form-control" [firstDayOfWeek]="7" [minDate]="fromMin" placeholder="מתאריך" name="dp" [(ngModel)]="fromModel"
-                ngbDatepicker #from="ngbDatepicker">
+              <input ngbPopover="" triggers="mouseenter:mouseleave" popoverTitle="תאריך הגעה" formControlName="FromDate" class="form-control"
+                (ngModelChange)="change()" [firstDayOfWeek]="7" [minDate]="fromMin" placeholder="מתאריך" name="dp" [(ngModel)]="fromModel"
+                ngbDatepicker #from="ngbDatepicker" (click)="from.toggle()">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="from.toggle()" type="button">
                   <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-            <!-- <label class="control-label">מין</label> -->
-            <div class="input-group radio-btn radio">
-              <label class="btn btn-outline-secondary">
-                <input type="radio" value="firstShift" name="shiftRadio" class="shiftRadio"> משמרת ראשונה
-              </label>
-              <label class="btn btn-outline-secondary">
-                <input type="radio" value="firstShift" name="shiftRadio" class="shiftRadio"> משמרת שניה
-              </label>
+            <div class="row justify-content-md-center arrShift">
+              <div class="col-1.5">
+                <div class="form-group">
+                  <select ngbPopover="" triggers="mouseenter:mouseleave" popoverTitle="משמרת הגעה" formControlName="ShiftNumberFrom" (change)="change()"
+                    class="custom-select" id="inputGroupSelect02">
+                    <!-- TODO: select gender on edit - problem: not number -->
+                    <option *ngFor="let shift of shifts" value={{shift.ShiftNumber}}>{{ shift.Description }}</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </form>
     </div>
-    <div class="col">
+    <div class="col-5">
       <angular2-multiselect style="direction: rtl" [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
         (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
       </angular2-multiselect>
@@ -48,4 +59,35 @@
   </div>
 </div>
 <app-dogs-table [hidden]="selectedItems.length == 0" [selectedDogs]="selectedItems" (changeCheckbox)="editDogs($event)"></app-dogs-table>
-<button style="margin-left: 5%; width: 10%" [hidden]="selectedItems.length == 0" type="button" class="btn btn-primary">הזמן</button>
+
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <main class='container'>
+      <button [disabled]="OrderForm.status === 'INVALID' || this.orderDetails === undefined || this.orderDetails.Price === undefined"
+        (click)="order()" [hidden]="selectedItems.length == 0" type="button" class='myButt three'>בצע הזמנה</button>
+    </main>
+  </div>
+  <div class="col-2">
+    <span class="align-middle myLabel rtl" [hidden]="this.orderDetails === undefined">
+      {{this.orderDetails === undefined ? '' : this.orderDetails.Price}}
+    </span>
+  </div>
+  <div class="col-2">
+    <main class='container'>
+      <button [disabled]="OrderForm.status === 'INVALID'" (click)="checkPrice()" [hidden]="selectedItems.length == 0" type="button"
+        class='myButt three'>חשב מחיר</button>
+    </main>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss" class="modal">
+  <div class="modal-header rtl">
+    <h4 class="modal-title">סטטוס הזמנה</h4>
+  </div>
+  <div class="modal-body rtl">
+    <p>{{this.resultOrder}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">סגור</button>
+  </div>
+</ng-template>

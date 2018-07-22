@@ -28,7 +28,6 @@ export class RegisterComponent {
     private fbService: FbServiceService,
     private fb: FormBuilder,
     private httpReq: HttpRequestService,
-    private confirmModal: ConfirmModalComponent,
     private modalService: NgbModal) {
 
     this.createForm();
@@ -45,7 +44,7 @@ export class RegisterComponent {
   createForm() {
     this.loginForm = this.fb.group({
       Useremail: ['', [Validators.required, this.regexCheck(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i)]],
-      UserPaswrd: ['', [Validators.required, this.regexCheck(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i)]]
+      UserPaswrd: ['', [Validators.required/*, this.regexCheck(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i)*/]]
     });
 
     this.registerForm = this.fb.group({

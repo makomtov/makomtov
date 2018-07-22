@@ -1,15 +1,19 @@
 <div class="row justify-content-md-center">
   <div class="col-sm-2 form-group">
     <label>תאריך הזמנה</label>
-    <label> {{reservationDetails.OrderDate}}</label>
+    <label> {{reservationDetails.OrderDate | date:'dd-MM-yyyy'}}</label>
   </div>
   <div class="col-sm-2 form-group">
     <label>תאריך הגעה</label>
-    <label> {{reservationDetails.FromDate}}</label>
+    <label> {{reservationDetails.FromDate | date:'dd-MM-yyyy'}}</label>
   </div>
   <div class="col-sm-2 form-group">
     <label>תאריך עזיבה</label>
-    <label> {{reservationDetails.ToDate}}</label>
+    <label> {{reservationDetails.ToDate | date:'dd-MM-yyyy'}}</label>
+  </div>
+  <div class="col-sm-1 form-group">
+    <label>מחיר</label>
+    <label> {{reservationDetails.Price}}</label>
   </div>
 </div>
 <app-dogs-table class="dogsTable" [selectedDogs]="dogsList"></app-dogs-table>

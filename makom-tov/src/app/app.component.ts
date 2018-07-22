@@ -6,11 +6,13 @@ import { Component, ViewContainerRef } from '@angular/core';
 })
 export class AppComponent {
   header =
-    [{ name: 'הזמנה חדשה', route: '/reservation', isNeedLogin: true },
-    { name: 'הכלבים שלי', route: '/mydogs', isNeedLogin: true},
-    { name: 'פרטים אישיים', route: '/profile', isNeedLogin: true },
-    { name: 'היסטוריית הזמנות', route: '/history', isNeedLogin: true },
-    { name: 'צור קשר', route: '/contact', isNeedLogin: false}];
+    [
+    { name: 'הזמנה חדשה', route: '/reservation'},
+    { name: 'הכלבים שלי', route: '/mydogs'},
+    { name: 'פרטים אישיים', route: '/profile'},
+    { name: 'היסטוריית הזמנות', route: '/history'},
+    { name: 'צור קשר', route: '/contact'}
+  ];
 
     home = '/home';
 

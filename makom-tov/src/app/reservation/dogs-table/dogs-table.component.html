@@ -1,26 +1,41 @@
-<div class="table-responsive">
-  <table class="table" style="direction: rtl; text-align: right">
-    <thead>
-      <tr>
-        <th scope="col">שם הכלב</th>
-        <th scope="col">תאריך חיסון כלבת</th>
-        <th scope="col">אוכל של הכלביה?</th>
-        <th scope="col">אילוף?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let dog of selectedDogs">
-        <th scope="row">{{dog.itemName}}</th>
-        <td>{{dog.vaccinationDate}}</td>
-        <td>
-          <input type="checkbox" (change)="changeCheckbox.next({action:1,id:dog.id, value:$event.target.checked})">
-        </td>
-        <td>
-          <input type="checkbox" (change)="changeCheckbox.next({action:2,id:dog.id, value:$event.target.checked})">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<app-edit-details></app-edit-details>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="table-responsive">
+      <table class="table" style="direction: rtl; text-align: right">
+        <thead>
+          <tr>
+            <th scope="col">שם הכלב</th>
+            <th scope="col">תאריך חיסון כלבת</th>
+            <th scope="col">אוכל של הכלביה?</th>
+            <th scope="col">אילוף?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dog of selectedDogs">
+            <th scope="row">{{dog.itemName}}</th>
+            <td>{{dog.vaccinationDate  | date:'dd-MM-yyyy'}}</td>
+            <td>
+              <input class="inp-cbx" id='{{dog.itemName}}1' type="checkbox" style="display: none;" (change)="changeCheckbox.next({action:1,id:dog.id, value:$event.target.checked})"/>
+              <label class="cbx" for='{{dog.itemName}}1'>
+                <span>
+                  <svg width="12px" height="10px" viewbox="0 0 12 10">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                  </svg>
+                </span>
+              </label>
+            </td>
+            <td>
+              <input class="inp-cbx" id='{{dog.itemName}}2' type="checkbox" style="display: none;" (change)="changeCheckbox.next({action:2,id:dog.id, value:$event.target.checked})"/>
+              <label class="cbx" for='{{dog.itemName}}2'>
+                <span>
+                  <svg width="12px" height="10px" viewbox="0 0 12 10">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                  </svg>
+                </span>
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

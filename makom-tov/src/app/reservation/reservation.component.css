@@ -6,6 +6,11 @@ input {
   direction: rtl;
 }
 
+.rtl {
+  text-align: right;
+  direction: rtl;
+}
+
 .radio {
   direction: rtl;
   text-align: right;
@@ -17,4 +22,97 @@ input {
   padding:10px;
   outline:none;
 	width:100%;
+}
+
+#inputGroupSelect02 {
+  direction: rtl;
+}
+
+.arrShift {
+  padding: 2%;
+}
+
+.leftShift {
+  padding: 2%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+}
+.myButt[disabled] {
+  cursor: not-allowed;
+}
+
+.myLabel {
+  color: rgb(33, 189, 40);
+  outline: none;
+  border: none;
+  padding: 20px;
+  display: block;
+  margin: 50px auto;
+  font-size: 20px;
+  background-color: transparent;
+  position: relative;
+  border: 2px solid #428bca;
+  border-color: transparent;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+}
+
+
+.myButt {
+  outline: none;
+  border: none;
+  padding: 20px;
+  display: block;
+  margin: 50px auto;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: transparent;
+  position: relative;
+  border: 2px solid #428bca;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+}
+
+.three {
+  color: #428bca;
+  border-color: transparent;
+}
+.three:before, .three:after {
+  width: 0;
+  height: 3px;
+  content: " ";
+  background-color: #428bca;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
+.three:after {
+  top: 100%;
+}
+.three:hover {
+  letter-spacing: 8px;
+  color: #428bca;
+}
+.three:hover:before, .three:hover:after {
+  width: 100%;
+  left: 0;
+}
+.three:hover:after {
+  width: 100%;
+  left: 0;
 }

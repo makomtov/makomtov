@@ -9,6 +9,9 @@ const getDogs = environment.makomTovServer + '/api/Users/GetUserDogs/';
 const updateUserDetailsUrl = environment.makomTovServer + '/api/Users/UpdateUserDetails';
 const getReservation = environment.makomTovServer + '/api/Reservation/GetUserOrders/';
 const getCitiesUrl = environment.makomTovServer + '/api/XML/cities';
+const getOpenHoursList = environment.makomTovServer + '/api/Reservation/OpenHoursList';
+const createOrder = environment.makomTovServer + '/api/Reservation/CreateOrder';
+const getOrderPrice = environment.makomTovServer + '/api/Reservation/CalculateOrderPrice';
 
 @Injectable()
 export class HttpRequestService {
@@ -65,6 +68,25 @@ export class HttpRequestService {
       .toPromise().then(cities => {
         return cities;
       });
+  }
+
+  getOpenHoursList() {
+    return this.http.get<any>(getOpenHoursList)
+      .toPromise().then(OpenHoursList => {
+        return OpenHoursList;
+      });
+  }
+
+  createOrder(orderDetails) {
+    return this.http.post<any>(createOrder, orderDetails).toPromise().then(data => {
+      console.log(data);
+    });
+  }
+
+  calculateOrderProce(orderDetails) {
+    return this.http.post<any>(getOrderPrice, orderDetails).toPromise().then(data => {
+      return data;
+    });
   }
 
   updateUserDetails(user: any) {

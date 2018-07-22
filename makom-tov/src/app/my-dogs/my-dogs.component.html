@@ -1,3 +1,4 @@
+<app-edit-details></app-edit-details>
 <div class="row" style="direction: rtl; width: 100%; margin-top:2%;">
   <div class="col-sm-4" *ngFor="let dog of myDogs" style="margin-bottom: 3%">
     <div class="card text-right bg-light" style="width: 18rem;">
@@ -20,7 +21,7 @@
             </tr>
             <tr>
               <th scope="row">תאריך חיסון כלבת:</th>
-              <td>{{ dog.DogRabiesVaccine }}</td>
+              <td>{{ dog.DogRabiesVaccine | date:'dd-MM-yyyy'}}</td>
             </tr>
           </tbody>
         </table>

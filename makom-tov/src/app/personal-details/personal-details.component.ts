@@ -27,16 +27,16 @@ export class PersonalDetailsComponent {
       cities.City.forEach(element => {
         this.cities.push({ 'id': id++, 'itemName': element.Heb });
       });
-      console.log(this.cities);
-
     });
   }
 
   createForm() {
+    console.log(this.user);
+
     this.personalDetailsForm = this.fb.group({
       UserFirstName: [this.user !== undefined ? this.user.UserFirstName : '', Validators.required],
       UserLastName: [this.user !== undefined ? this.user.UserLastName : '', Validators.required],
-      UserCityName: [this.user !== undefined ? this.user.UserCityName : '', [Validators.required, this.cityCheck()]],
+      UserCity: [this.user !== undefined ? this.user.UserCity : '', [Validators.required, this.cityCheck()]],
       UserAddress: [this.user !== undefined ? this.user.UserAddress : '', Validators.required],
       UserPhone1: [this.user !== undefined ? this.user.UserPhone1 : '',
       [Validators.required, this.regexCheck(/^$|^0\d([\d]{0,1})\d{7}$/i)]],

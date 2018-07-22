@@ -7,59 +7,92 @@
     <h4 *ngIf="!dogDetails" class="modal-title">כלב חדש</h4>
   </div>
   <div class="modal-body">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" [value]="dogDetails.DogName" placeholder="הזן את שם הכלב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">שם</span>
+    <form [formGroup]="dogDetailForm" (ngSubmit)="onSubmitLogin()">
+      <div class="input-group mb-3">
+        <input type="text" formControlName="DogName" class="form-control" placeholder="הזן את שם הכלב">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">שם</span>
+        </div>
       </div>
-    </div>
-    <div class="input-group mb-3">
-      <!-- TODO: value/ngModel - decide -->
-      <input type="text" class="form-control" [value]="dogDetails.DogType" placeholder="הזן את סוג הכלב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">סוג</span>
+      <div class="input-group mb-3">
+        <input type="text" formControlName="DogType" class="form-control" placeholder="הזן את סוג הכלב">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">סוג</span>
+        </div>
       </div>
-    </div>
-    <div class="input-group mb-3">
-      <input type="number" class="form-control" [value]="dogDetails.DogShvav" placeholder="הזן את מספר השבב">
-      <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">שבב</span>
+      <div class="input-group mb-3">
+        <input type="number" formControlName="DogShvav" class="form-control" placeholder="הזן את מספר השבב">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">שבב</span>
+        </div>
       </div>
-    </div>
-    <div class="input-group mb-3">
-      <select class="custom-select" id="inputGroupSelect02">
-      <!-- TODO: select gender on edit - problem: not number -->
-      <option selected>בחר מין</option>
-      <option value="1">זכר</option>
-      <option value="2">נקבה</option>
-    </select>
-      <div class="input-group-append">
-        <label class="input-group-text" for="inputGroupSelect02">מין</label>
+      <div class="input-group mb-3">
+        <input formControlName="DogJump" class="inp-cbx" id='jump' type="checkbox" style="display: none;" [checked]="dogDetails.DogJump"
+        />
+        <label class="cbx" for='jump'>
+          <span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+          </span>
+        </label>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">קופץ?</span>
+        </div>
+        <input formControlName="DogDig" class="inp-cbx" id='dig' type="checkbox" style="display: none;" [checked]="dogDetails.DogDig"
+        />
+        <label class="cbx" for='dig'>
+          <span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+          </span>
+        </label>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">חופר?</span>
+        </div>
+        <input formControlName="DogNeuter" class="inp-cbx" id='Neuter' type="checkbox" style="display: none;" [checked]="dogDetails.DogNeuter"
+        />
+        <label class="cbx" for='Neuter'>
+          <span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+          </span>
+        </label>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">מסורס/מעוקרת?</span>
+        </div>
       </div>
-    </div>
-    <form class="form-inline">
+      <div class="input-group mb-3">
+        <select formControlName="DogGender" class="custom-select" id="inputGroupSelect02">
+          <option value="זכר">זכר</option>
+          <option value="נקבה">נקבה</option>
+        </select>
+        <div class="input-group-append">
+          <label class="input-group-text" for="inputGroupSelect02">מין</label>
+        </div>
+      </div>
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.DogBirthDate" name="dp" [(ngModel)]="birthDate" ngbDatepicker
-            #date="ngbDatepicker">
+          <input formControlName="DogBirthDate" class="form-control" [firstDayOfWeek]="7" [placeholder]="this.dogDetailForm.value.DogBirthDate" name="dp"
+            [(ngModel)]="birthDate" ngbDatepicker #date="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="date.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
+              <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+            </button>
           </div>
         </div>
         <b>:תאריך לידה </b>
       </div>
-    </form>
-    <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.DogRabiesVaccine" name="dp" [(ngModel)]="vaccinationDate"
-            ngbDatepicker #ddate="ngbDatepicker">
+          <input formControlName="DogRabiesVaccine" class="form-control" [firstDayOfWeek]="7" [placeholder]="dogDetails.DogRabiesVaccine"
+            name="dp" [(ngModel)]="vaccinationDate" ngbDatepicker #ddate="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="ddate.toggle()" type="button">
-          <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-        </button>
+              <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+            </button>
           </div>
         </div>
         <b>:תאריך חיסון כלבת </b>

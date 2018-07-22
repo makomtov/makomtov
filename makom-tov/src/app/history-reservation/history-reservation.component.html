@@ -1,19 +1,27 @@
 <div class="table-responsive">
-  <table class="table table-hover" style="direction: rtl; text-align: right">
+  <table class="table table-hover">
     <thead class="thead-light">
       <tr>
-        <th scope="col">תאריך הזמנה</th>
+        <th  (click)="sortOrderDate()" scope="col">
+          <i class="fa fa-fw" [ngClass]="{'fa-sort-up': this.orderByDateAsc === true,
+           'fa-sort-down':  this.orderByDateAsc === false}"></i>
+          תאריך הזמנה
+        </th>
         <th scope="col">תאריך הגעה</th>
         <th scope="col">תאריך עזיבה</th>
-        <th scope="col">מספר כלבים</th>
+        <th (click)="sortOrderDogNumber()" scope="col">מספר כלבים</th>
+        <th scope="col">מחיר</th>
+        <th scope="col">סטטוס הזמנה</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let reservation of reservations" (click)="openResDetail(reservation)">
-        <th scope="row">{{reservation.OrderDate}}</th>
-        <td>{{reservation.FromDate}}</td>
-        <td>{{reservation.ToDate}}</td>
+        <th scope="row">{{reservation.OrderDate | date:'dd-MM-yyyy'}}</th>
+        <td>{{reservation.FromDate | date:'dd-MM-yyyy'}}</td>
+        <td>{{reservation.ToDate | date:'dd-MM-yyyy'}}</td>
         <td>{{reservation.mDogs.length}}</td>
+        <td> {{reservation.Price}}</td>
+        <td>{{reservation.OrderStatusName}}</td>
       </tr>
     </tbody>
   </table>
